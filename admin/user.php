@@ -17,6 +17,47 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
 }
 
+#################################################################################################
+									//Delete customer script.
+#################################################################################################
+if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] = 'delete') {
+	$id = $_GET['id'];
+
+	echo "
+		<div class='delete-modal'>
+			<i class='fa fa-close float-right close'></i>
+
+			<div class='delete-modal-body'>
+				<p>Are you sure you want to delete this account?</p>
+				
+				<p style='margin-top: 30px;'' class='float-right'>
+					<a href='?id=" . $id . "&delete=yes' class='yes-btn'><i class='fa fa-check'></i>&nbsp; Yes</a>
+					<a href='?id=" . $id ."' class='no-btn close' id='close'><i class='fa fa-close'></i>&nbsp; No</a>
+				</p>
+			</div>
+		</div>
+	";
+}
+
+if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
+	// Store the ID of the account we want to delete.
+	$id = $_GET['id'];
+
+	#############################
+		// Delete.
+	if (delCustomerAcct($id) === true) { ?>
+			<script type="text/javascript">
+				$('document').ready(function () {
+					alert('Account deleted successfully');
+				});
+			</script>
+		<?php 
+}
+	#############################
+}
+#################################################################################################
+									//Delete customer script Ends.
+#################################################################################################
 ?>
 
 <div class="text-center col-md-12 mb-4 heading">
@@ -32,6 +73,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 			// Collect Full Name.
 			$user[0]['fullname'] = $user[0]['firstname'] . " " . $user[0]['middlename'] . " " . $user[0]['lastname'];
+
+			if (empty($user[0]['profilePic'])) {
+				$user[0]['profilePic'] = DEFUALTPROFILEPIC;
+			}
 		########################################################################
 	?>
 
@@ -92,7 +137,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 		</table>
 
 		<span>
-			<button class="btn danger float-right"><i class='fa fa-trash'></i>&nbsp; Delete </button>
+			<a href='<?php echo "?id=". $user[0]['id'] ."&action=delete"; ?>' class='btn danger float-right'><i class='fa fa-trash'></i>&nbsp; Delete </a>
 		</span>
 	</div>
 </div>

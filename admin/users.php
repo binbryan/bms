@@ -71,7 +71,7 @@ while ($counter <= $totalPages) {
 
 				foreach ($users as $user) {
 					if (empty($user['profilePic'])) {
-						$user['profilePic'] = "http://localhost:8080/bank/admin/uploads/image/temp.jpg";
+						$user['profilePic'] = DEFUALTPROFILEPIC;
 					}
 					echo "
 						<div class='row'>

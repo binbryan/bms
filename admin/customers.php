@@ -59,8 +59,8 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] = 'delete') 
 				<p>Are you sure you want to delete this account?</p>
 				
 				<p style='margin-top: 30px;'' class='float-right'>
-					<a href='?id=". $id ."&delete=yes' class='yes-btn'><i class='fa fa-check'></i>&nbsp; Yes</a>
-					<a class='no-btn close' id='close'><i class='fa fa-close'></i>&nbsp; No</a>
+					<a href='?id=". $id . "&delete=yes' class='yes-btn'><i class='fa fa-check'></i>&nbsp; Yes</a>
+					<a href='?id=". $id ."' class='no-btn close' id='close'><i class='fa fa-close'></i>&nbsp; No</a>
 				</p>
 			</div>
 		</div>

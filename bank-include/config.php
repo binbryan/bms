@@ -28,6 +28,7 @@ define('IMAGE_FULLSIZE', "fullsize");
 define('IMAGE_THUMBNAIL', "thumbnail");
 define('THUMBNAIL_WIDTH', 120);
 define('PNG_QUALITY', 85);
+define('DEFUALTPROFILEPIC', 'http://localhost:8080/bank/admin/uploads/image/temp.jpg');
 
 //Establish a connection to the database server
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_SCHEMA);
