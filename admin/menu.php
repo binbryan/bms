@@ -56,9 +56,11 @@
         </div>
 
         <div class="dropdown">
-            <div class="dropdown-label">
-                <i class="fa fa-comments"></i>&nbsp; Chat
-            </div>
+            <a href="chat.php">
+                <div class="dropdown-label">
+                    <i class="fa fa-comments"></i>&nbsp; Chat
+                </div>
+            </a>
         </div>
 
         <div class="dropdown">
