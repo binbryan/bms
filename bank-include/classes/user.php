@@ -367,31 +367,69 @@ class User{
 	 * @Option param int Numbers of rows to be retrieved (default = 2000000).
 	 * @param string Retrieve User's objects ordered by First Name in descending order.
 	 */
-	public static function getUsers(int $numRows = null, string $order = null) {
-		// Store the value of $order if it's set.
-		if ($order != 'lastname') {
-			// Sort in ascending order.
-			$ascend = 'ASC';
+	public static function getUsers(string $order, int $offset, int $numRows) {
+		/*
+		 * Create a connection to the database.
+		 */
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn === false)
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		
+
+		$sql = "SELECT id, username, email, firstname, middlename, lastname, bio, userRole, profilePic, createdOn FROM bank_users ORDER BY $order LIMIT $offset, $numRows";
+
+		$result = $conn->query($sql);
+		
+		// Initialize an empty array.
+		$data = [];
+		
+		if ($result == true && $result->num_rows > 0) {
+			// Loop through the data.
+			while ($row = $result->fetch_assoc()) {
+				// Store the retrieved rows.
+				$rowId = $row['id'];
+				$rowUsername = $row['username'];
+				$rowEmail  = $row['email'];
+				$rowFirstName = $row['firstname'];
+				$rowMiddleName = $row['middlename'];
+				$rowLastName = $row['lastname'];
+				$rowBio = $row['bio'];
+				$rowUserRole = $row['userRole'];
+				$rowProfilePic = $row['profilePic'];
+				$rowCreatedOn = $row['createdOn'];
+				
+				/*$usersData = new User($rowId, $rowUsername, $password = null, $rowEmail, $rowUserRole, $token = null, $rowFirstName, $rowMiddleName, $rowLastName, $rowBio, $active = null, $resetToken = null, $rowCreatedOn, $rowProfilePic);*/
+
+				// Bind array.
+				array_push($data, $row);
+			}
+			
 		} else {
-			// Sort in descending order.
-			$ascend = 'DESC';
-
-			// Fetch last 10 inserted data.
-			/*$numRows = 10;*/
-
+			return false;
 		}
+		
+		return $data;
+	}
 
-
-		if ($order !== 'createdOn') {
-			// Sort in ascending order.
-			$ascend = 'ASC';
-		} else {
-			// Sort in descending order.
-			$ascend = 'DESC';
-
-			// Fetch last 10 inserted data.
-			$numRows = 10;
-		}
+	/*
+	 * Get the list of User objects in the database.
+	 * 
+	 * @Option param int Numbers of rows to be retrieved (default = 2000000).
+	 * @param string Retrieve User's objects ordered by First Name in descending order.
+	 */
+	public static function getUserById(int $id)
+	{
+		if (empty($id))
+			trigger_error("<strong>Post::update()</strong>: Attempt to fetch a User object that doesn't have it's ID property set.", E_USER_ERROR);
 
 		/*
 		 * Create a connection to the database.
@@ -406,24 +444,24 @@ class User{
 		$conn = new mysqli($servername, $username, $password, $dbname);
 
 		// Check connection
-		if ($conn === false) {
-			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
-		}
+		if ($conn === false)
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error . "</span>");
 
-		$sql = "SELECT id, username, email, firstname, middlename, lastname, bio, userRole, profilePic, createdOn FROM bank_users ORDER BY $order ASC LIMIT $numRows";
+
+		$sql = "SELECT id, username, email, firstname, middlename, lastname, bio, userRole, profilePic, createdOn FROM bank_users WHERE id = $id LIMIT 1";
 
 		$result = $conn->query($sql);
-
+		
 		// Initialize an empty array.
 		$data = [];
 
-		if ($result == true && $result->num_rows > 0) {
+		if ($result == true && $result->num_rows == 1) {
 			// Loop through the data.
 			while ($row = $result->fetch_assoc()) {
 				// Store the retrieved rows.
 				$rowId = $row['id'];
 				$rowUsername = $row['username'];
-				$rowEmail  = $row['email'];
+				$rowEmail = $row['email'];
 				$rowFirstName = $row['firstname'];
 				$rowMiddleName = $row['middlename'];
 				$rowLastName = $row['lastname'];

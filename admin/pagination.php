@@ -24,7 +24,7 @@
 		
 		<!-- Next Button -->
 		<li class='page-item <?php echo $class; ?>'>
-			<a class='page-link' aria-label='Next' href='<?php if ($counter <= $totalPages) { echo "?page=". $page;  } ?>' id='next'>
+			<a class='page-link' aria-label='Next' href='<?php if ($page <= $totalPages) { echo "?page=". $page;  } ?>' id='next'>
 				<span aria-hidden='true'> Next </span>
 			</a>
 		</li>

@@ -45,15 +45,6 @@ if ($page >= $totalPages) {
 	$class = 'disabled';
 }
 
-// Keep track of the last page.
-$counter = 0;
-while ($counter < $totalPages) {
-	// Increment Counter.
-	$counter++;
-}
-
-
-
 #################################################################################################
 									//Delete customer script.
 #################################################################################################

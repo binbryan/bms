@@ -24,7 +24,22 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 </div>
 
 <div class="container">
+	<?php
+		########################################################################
+			// Get a list of users.
+			// Order by firstname.
+			$user = getUserById($id);
+
+			// Collect Full Name.
+			$user[0]['fullname'] = $user[0]['firstname'] . " " . $user[0]['middlename'] . " " . $user[0]['lastname'];
+		########################################################################
+	?>
+
 	<div class="table-responsive">
+		<div class='text-center'>
+			<img src='<?php echo $user[0]['profilePic']; ?>' alt="<?php echo $user[0]['fullname'] ."'s profile picture"; ?>" style='width: 30%; height: 290px; border-radius: 100%; margin-bottom: 20px;'/>
+		<div>
+
 		<table class="table table-striped table-sm">
 			<thead>
 				<tr>
@@ -42,102 +57,38 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 			</thead>
 			
 			<tbody>
-				<tr">
+				<tr>
 					<td><strong>Name:</strong></td>
-					<td><a href="customer.php">Bin Emmanuel</a></td>
+					<td><?php echo $user[0]['fullname']; ?></td>
 				</tr>
-
+				
 				<tr>
-					<td><strong>Gender:</strong></td>
-					<td><a href="customer.php">Male</a></td>
+					<td><strong>Username:</strong></td>
+					<td><?php echo $user[0]['username']; ?></td>
 				</tr>
 
-				<tr>
-					<td><strong>Date Of Birth:</strong></td>
-					<td><a href="customer.php">9 Jen 1999</a></td>
-				</tr>
-
-				<tr>
-					<td><strong>Language:</strong></td>
-					<td><a href="customer.php">English</a></td>
-				</tr>
-
-			</tbody>
-
-			<thead>
-				<tr>
-					<th><h4 class="heading">Contact Info</h4></th>
-				</tr>
-			</thead>
-			
-			<tbody>
 				<tr>
 					<td><strong>Email ID:</strong></td>
-					<td><a href="customer.php">binemmanuel@mail.com</a></td>
+					<td><a href="mailto:"><?php echo $user[0]['email']; ?></a></td>
 				</tr>
 
 				<tr>
-					<td><strong>Phone No:</strong></td>
-					<td><a href="customer.php">08181904289</a></td>
-				</tr>
-			</tbody>
-
-
-			<thead>
-				<tr>
-					<th><h4 class="heading">Residence</h4></th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td><strong>Address:</strong></td>
-					<td><a href="customer.php">1234 New World St</a></td>
+					<td><strong>User Role:</strong></td>
+					<td><?php echo $user[0]['userRole']; ?></td>
 				</tr>
 
 				<tr>
-					<td><strong>City:</strong></td>
-					<td><a href="customer.php">Abuja</a></td>
+					<td><strong>Bio:</strong></td>
+					<td>
+						<p><?php echo $user[0]['bio']; ?></p>
+					</td>
 				</tr>
 
 				<tr>
-					<td><strong>State:</strong></td>
-					<td><a href="customer.php">Abuja</a></td>
+					<td><strong>Created On:</strong></td>
+					<td><?php echo getDateFormated($user[0]['createdOn']); ?></td>
 				</tr>
-
-				<tr>
-					<td><strong>Country:</strong></td>
-					<td><a href="customer.php">Nigeria</a></td>
-				</tr>
-			</tbody>
-
-			<thead>
-				<tr>
-					<th><h4 class="heading">Other Info</h4></th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td><strong>Account Name:</strong></td>
-					<td><a href="customer.php">Bin Emmanuel</a></td>
-				</tr>
-
-				<tr>
-					<td><strong>Account Number:</strong></td>
-					<td><a href="customer.php">097123512351</a></td>
-				</tr>
-
-				<tr>
-					<td><strong>Account Type:</strong></td>
-					<td><a href="customer.php">Savings Account</a></td>
-				</tr>
-
-				<tr>
-					<td><strong>Current Balance:</strong></td>
-					<td><a href="customer.php">$0</a></td>
-				</tr>
-			</tbody>
+			</tbody>			
 		</table>
 
 		<span>

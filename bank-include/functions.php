@@ -336,8 +336,7 @@ function getCustomer(string $orderBy, int $offset, int $numCustomers = null) {
  * 
  * @return bool Returns false || true user's data was fetched successfully.
  */
-
-function getUser(int $numCustomers = null, string $order = null): array {
+function getUser(string $orderBy, int $offset, int $numCustomers = null) {
 	// Get a large number of customers if $numCustomers is not specified.
 	if (is_null($numCustomers)) {
 		$numCustomers = 2000000;
@@ -351,11 +350,11 @@ function getUser(int $numCustomers = null, string $order = null): array {
 			/*
 			 * Instantiate an object.
 			 */
-			if (User::getUsers($numCustomers, $order) == true) {
-				array_push($data, User::getUsers($numCustomers, $order));
+			if (User::getUsers($orderBy, $offset, $numCustomers) == true) {
+				array_push($data, User::getUsers($orderBy, $offset, $numCustomers));
 
 				foreach ($data as $user) {
-					return $user;
+					 return $user;
 				}
 			}
 			break;
@@ -364,8 +363,8 @@ function getUser(int $numCustomers = null, string $order = null): array {
 			/*
 			 * Instantiate an object.
 			 */
-			if (User::getUsers($numCustomers, $order) == true) {
-				array_push($data, User::getUsers($numCustomers, $order));
+			if (User::getUsers($orderBy, $offset, $numCustomers) == true) {
+				array_push($data, User::getUsers($orderBy, $offset, $numCustomers));
 
 				foreach ($data as $user) {
 					return $user;
@@ -378,6 +377,20 @@ function getUser(int $numCustomers = null, string $order = null): array {
 			break;
 	}
 
+}
+
+/*
+ * The function fetches a user data from the db by ID
+ *
+ * @param int The user's ID.
+ * 
+ * @return bool Returns false || true user's data was fetched successfully.
+ */
+function getUserById(int $id) {
+	if (is_numeric($id)) {
+		return User::getUserById($id);
+	}
+	
 	return false;
 }
 

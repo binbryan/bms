@@ -74,7 +74,7 @@ require 'header.php';
 								##############################################
 									// Get a list of newly register users.
 									// Order by firstname.
-									$users = getUser(10, 'createdOn');
+									$users = getUser('createdOn' , 0, 5);
 								##############################################
 
 								foreach ($users as $user) {

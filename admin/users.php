@@ -13,22 +13,61 @@ $pageTitle = 'Admin Users';
 // Include our header.php file
 require 'header.php';
 
+// Table Name.
+$tableName = 'bank_users';
+
+// Store the to rows.
+$totalRows = getTotalNumOfRows($tableName);
+
+// Execute if Page Number is set.
+if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+	// Store the Page Number.
+	$page = htmlspecialchars(stripcslashes(trim($_GET['page'])));
+} elseif (empty($_GET['page']) || $_GET['page'] < 0) {
+	// Page Number should be one if the Page Number is not set.
+	$page = 1;
+}
+
+// Number of records to fetch per page.
+$numberOfRecordsPerPage = 5;
+
+// Offset.
+$offset = ($page - 1) * $numberOfRecordsPerPage;
+
+// Calculate the total number of page.
+$totalPages = ceil($totalRows / $numberOfRecordsPerPage);
+
+// Store the CSS class in $class
+// if the Page Number is greater than the total page.
+if ($page >= $totalPages) {
+	$class = 'disabled';
+}
+
+$counter = 0;
+while ($counter <= $totalPages) {
+	$counter++;
+}
+
 ?>
 
+<!-- .text-center .col-md-12 .mb-4 .heading -->
 <div class="text-center col-md-12 mb-4 heading">
 	<h2>Admin Users</h2>
 </div>
+<!-- .text-center .col-md-12 .mb-4 .heading ends -->
 
+<!-- .container -->
 <div class="container">
+	<!-- .col-md-12 .mb-4 ends -->
 	<div class="col-md-12 mb-4">
+		<!-- .container .profile-area -->
 		<div class="container profile-area">
 			<?php
-				#########################################
+				########################################################################
 					// Get a list of users.
 					// Order by firstname.
-					$users = getUser(5, 'firstname');
-				#########################################
-
+					$users = getUser('firstname', $offset, $numberOfRecordsPerPage);
+				########################################################################
 
 				foreach ($users as $user) {
 					if (empty($user['profilePic'])) {
@@ -105,9 +144,13 @@ require 'header.php';
 
 				}
 			?>
+			<?php include 'pagination.php'; ?>
 		</div>
+		<!-- .container .profile-area ends -->
 	</div>
+	<!-- .col-md-12 .mb-4 ends -->
 </div>
+<!-- .container ends -->
 
 <?php
 // Include our footer.php file
