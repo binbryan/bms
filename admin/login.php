@@ -7,9 +7,6 @@ if (isset($_SESSION['loggedIn'])) {
     exit;
 }
 
-if (isset($_SESSION)) {
-	var_dump($_SESSION);
-}
 ?>
 
 <!DOCTYPE html>

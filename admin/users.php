@@ -22,22 +22,30 @@ require 'header.php';
 	<div class="col-md-12 mb-4">
 		<div class="container profile-area">
 			<?php
-				$users = getUser();
+				$users = getUser(10, 'firstname');
 
 				foreach ($users as $user) {
+					if (empty($user['profilePic'])) {
+						$user['profilePic'] = "http://localhost:8080/bank/admin/uploads/image/temp.png";
+					}
 					echo "
 						<div class='row'>
 							<div class='profile-wrap col-md-12'>
 								<i class='fa fa-pencil fa-lg float-right'></i>
 
 								<div class='col-md-3 float-left'>
-									<img src='". $user['profilePic'] ."' style='box-shadow: 0px 2px 10px rgba(,0,0,.1); border-radius: 100%; height: 223px; width: 100%;'>
+									<a href=''>
+										<img src='". $user['profilePic'] ."' style='box-shadow: 0px 2px 10px rgba(,0,0,.1); border: 2px solid gray; border-radius: 100%; height: 208px; width: 100%;' class='mb-4'>
+
+										<p class='text-center'><strong>". $user['firstname'] .' '. $user['middlename'] .' '. $user['lastname'] ."</strong></p>
+
+									</a>
 								</div>
 
 								<div class='col-md-9 float-right'>
 									<div class='table-responsive' >
 										<p>
-											<table class='mb-2'>
+											<table class='mb-5'>
 												<tbody class='table'>
 													<tr id='profile-wrap-table'>
 														<td><strong>Name:</strong></td>

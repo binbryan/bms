@@ -524,55 +524,65 @@ a#scrollUp:hover {
 /*--------about-area end--------*/
 
 /*--------profile-area start--------*/
-.profile-area{
+.profile-area,
+.transition-area{
     padding: 50px 0px 100px;
 }
-.profile-title{
+.profile-title,
+.transition-title{
     margin-bottom: 50px;
 }
-.profile-title h2{
+.profile-title h2,
+.transition-title h2{
     font-size: 40px;
     font-weight: 600;
     line-height: 30px;
     margin-bottom: 25px;
 }
-.profile-wrap{
+.profile-wrap,
+.transaction-wrap{
     background: #fff;
     box-shadow: 0px 2px 10px rgba(0,0,0,.1);
     padding: 30px 25px;
     margin-bottom: 30px;
 }
-.profile-wrap h3{
+.profile-wrap h3,
+.transaction-wrap h3{
     display: inline-block;
     font-size: 24px;
     margin-bottom: 15px;
 }
 
-.profile-wrap h4{
+.profile-wrap h4,
+.transaction-wrap h4{
     display: inline-block;
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.profile-wrap p{
+.profile-wrap p,
+.transaction-wrap p{
     margin-bottom: 15px;
     text-align: justify;
 }
-.profile-wrap a{
+.profile-wrap a,
+.transaction-wrap a{
     display: inline-block;
     color: #ff7700;
     font-size: 18px;
     margin-top: 10px;
 }
-.profile-items {
+/*.profile-items,
+.transaction-wrap {
     background: #fff;
     box-shadow: 0px 2px 10px rgba(0,0,0,.1);
     padding: 30px 20px 35px 80px;
     margin-bottom: 30px;
     position: relative;
-}
-.profile-items:hover{
-    box-shadow: 0px 3px 20px rgba(0,0,0,.1);
+}*/
+.profile-items:hover,
+.transaction-wrap:hover{
+    box-shadow: 0px 3px 20px #dbb686;
 }
 .profile-items:before{
     position: absolute;
@@ -583,19 +593,23 @@ a#scrollUp:hover {
     height: 3px;
     content: "";
 }
-.profile-items:hover:before{
+.profile-items:hover:before,
+.transaction-wrap:hover:before{
     width: 100%;
 }
-.profile-items h3{
+.profile-items h3,
+.transaction-wrap h3{
     font-size: 24px;
     margin-bottom: 15px;
 }
-.profile-items span{
+.profile-items span,
+.transaction-wrap span{
     position: absolute;
     left: 20px;
     top: 35px;
 }
-.profile-items span:before{
+.profile-items span:before,
+.transaction-wrap span:before{
     font-size: 40px;
     color: #ff7700;
 }

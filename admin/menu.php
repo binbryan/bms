@@ -40,7 +40,7 @@
         </div>
 
         <div class="dropdown">
-            <a href="user.php">
+            <a href="users.php">
                 <div class="dropdown-label">
                     <i class="fa fa-user"></i>&nbsp; Users
                 </div>

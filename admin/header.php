@@ -40,7 +40,7 @@ require_once '..\bank-include\functions.php';
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+        <link rel="shortcut icon" type="image/jpg" href="assets/images/mobail.jpg">
         <!-- Place favicon.ico in the root directory -->
         
         <!-- all css here -->
@@ -48,25 +48,27 @@ require_once '..\bank-include\functions.php';
         <link rel="stylesheet" href="assets/css/custom.css">
         <!-- bootstrap v3.3.7 css -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!-- bootstrap v3.3.7 js -->
+        <link rel="stylesheet" href="assets/js/bootstrap.min.js">
         <!-- animate css -->
         <!-- <link rel="stylesheet" href="assets/css/animate.css"> -->
         
         <!-- owl.carousel.2.0.0-beta.2.4 css -->
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+        <!-- <link rel="stylesheet" href="assets/css/owl.carousel.min.css"> -->
         
         <!-- Top Slider CSS -->
-        <link href="css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+        <!-- <link href="css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all"> -->
 
         <!-- font-awesome v4.6.3 css -->
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
         
         <!-- flaticon.css -->
-        <link rel="stylesheet" href="assets/css/flaticon.css">
+        <!-- <link rel="stylesheet" href="assets/css/flaticon.css"> -->
         
         <!-- style css -->
         <link rel="stylesheet" href="assets/css/styles.css">
         <!-- responsive css -->
-        <link rel="stylesheet" href="assets/css/responsive.css">
+        <!-- <link rel="stylesheet" href="assets/css/responsive.css"> -->
         
         <!-- jquery.min -->
         <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
@@ -157,4 +159,8 @@ require_once '..\bank-include\functions.php';
                 }
                 ?>
                 <div class="container">
+
+                    
+
+                    
                     <div class="row">

@@ -296,8 +296,7 @@ class Transaction{
 		return false;
 	}
 
-
-	public static function getTransactions(): array {
+	public static function countRows(string $tableName): int{
 		//Store credentials in variables.
 		$servername = 'localhost';
 		$username = 'root';
@@ -312,12 +311,35 @@ class Transaction{
 			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
 		}
 
-		$sql = $conn->prepare("SELECT id, transactionId, accName, accNum, amount, recBank, recAccName, recAccNum, transactionDate FROM bank_transaction LIMIT ?");
+		// Get the number of pages
+		$totalPageSql = "SELECT COUNT(*) FROM $tableName";
 
-		$limit = 50;
+		$result = $conn->query($totalPageSql);
+
+		$totalRows = $result->fetch_assoc()['COUNT(*)'];
+
+		return $totalRows;
+	}
+
+	public static function getTransactions(int $offset = null, int $limit = null) {
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		$sql = $conn->prepare("SELECT id, transactionId, accName, accNum, amount, recBank, recAccName, recAccNum, transactionDate FROM bank_transaction ORDER BY transactionDate DESC LIMIT ?, ?");
 
 		// Bind parameters.
-		$sql->bind_param('i', $limit);
+		$sql->bind_param('ii', $offset, $limit);
 
 		// Execute query.
 		$result = $sql->execute();
@@ -334,7 +356,23 @@ class Transaction{
 			array_push($transactions, $data);
 			
 			foreach ($transactions as $transaction) {
-				return $transaction;
+				echo "
+					<div class='transaction-wrap col-md-12'>
+						<p>".
+							"<strong>Account Name</strong>: ". $transaction['accName'] ."<br>
+							<strong>Account Number</strong>: ". $transaction['accNum'] . 
+
+							"<p class='text-center'> made a transfer of ₦". number_format($transaction['amount']) ."<br>to 
+						</p>
+
+						<p>
+							<strong>Account Name</strong>: ". $transaction['recAccName'] ."<br>
+							<strong>Account Number</strong>: ". $transaction['recAccNum'] ."</br>
+							
+							<strong> On </strong>". getDateFormated($transaction['transactionDate'])
+						."</p>
+					</div>
+				";
 			}
 		}
 
@@ -343,29 +381,5 @@ class Transaction{
 		
 		// Close connection.
 		$conn->close();
-		
-		/*return false;*/
-
-
-		/*
-		$data = [];
-		$transaction = [];
-
-		$transaction['id'] = $this->id;
-		$transaction['userId'] = $this->userId;
-		$transaction['accName'] = $this->accName;
-		$transaction['accNum'] = $this->accNum;
-		$transaction['AuthorId'] = $this->AuthorId;
-		$transaction['AuthorId'] = $this->AuthorId;
-		$transaction['AuthorId'] = $this->AuthorId;
-		$transaction['transactionDate'] = $this->transactionDate;
-
-		array_push($data, $transaction);
-
-		return $data;*/
 	}
 }
-
-$transaction = Transaction::getTransactions();
-
-var_dump($transaction);

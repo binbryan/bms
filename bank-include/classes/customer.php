@@ -200,12 +200,53 @@ class Customer{
 	}
 
 	/*
+	 * Get the number of rows in the db table.
+	 * 
+	 * @param string Table Name.
+	 */
+	public static function countRows(string $tableName): int{
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		// Get the number of pages
+		$totalPageSql = "SELECT COUNT(*) FROM $tableName";
+
+		$result = $conn->query($totalPageSql);
+
+		$totalRows = $result->fetch_assoc()['COUNT(*)'];
+
+		return $totalRows;
+	}
+
+	/*
 	 * Get the list of Customer objects in the database.
 	 * 
 	 * @Option param int Numbers of rows to be retrieved (default = 2000000).
 	 * @param string Retrieve Customer objects ordered by CustomeredDate in descending order.
 	 */
-	public static function getCustomers(int $numRows = null, string $order = 'firstname') {
+	public static function getCustomers(string $order = null, int $offset, int $numRows = null) {
+		if ($order !== 'createdOn') {
+			// Sort in ascending order.
+			$ascend = 'ASC';
+		} else {
+			// Sort in descending order.
+			$ascend = 'DESC';
+
+			// Fetch last 10 inserted data.
+			$numRows = 10;
+		}
+
 		/*
 		 * Create a connection to the database.
 		 */
@@ -223,7 +264,7 @@ class Customer{
 			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
 		}
 
-		$sql = "SELECT * FROM bank_customers ORDER BY $order ASC LIMIT $numRows";
+		$sql = "SELECT * FROM bank_customers ORDER BY $order $ascend LIMIT $offset, $numRows";
 
 		$result = $conn->query($sql);
 

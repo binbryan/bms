@@ -236,7 +236,7 @@ function updateAccount(int $id, string $email = null, string $phoneNo = null, st
  * 
  * @return bool Returns false || true if the customer's email ID already exits.
  */
-function getCustomer(int $numCustomers = null) {
+function getCustomer(string $orderBy, int $offset, int $numCustomers = null) {
 	// Get a large number of customers if $numCustomers is not specified.
 	if (is_null($numCustomers)) {
 		$numCustomers = 2000000;
@@ -245,64 +245,84 @@ function getCustomer(int $numCustomers = null) {
 	/*
 	 * Instantiate an object.
 	 */
-	$customers = Customer::getCustomers($numCustomers);
+	$customers = Customer::getCustomers($orderBy, $offset, $numCustomers);
 
-	// Get data in a tabular form if list is set to true.
-	if (empty($customers)) {
-		echo "
-			<tr>
-				<td></td>
-				<td><a href='add-customer.php' >Click here to create an account.</a></td>
-				<td></td>				
-				<td></td>				
-				<td></td>				
-				<td></td>				
-				<td></td>				
-				<td></td>				
-			</tr>
-		";
-	} else {
-		// Count the number of rows.
-		$count = 0;
-
-		foreach ($customers as $customer) {
-			if (isset($customer->active) && $customer->active === 1) {
-				$customer->active = 'Active';
-
-				$class = "class='active'";
+	switch ($_SERVER['PHP_SELF']) {
+		case '/bank/admin/customers.php':
+			// Get data in a tabular form if list is set to true.
+			if (empty($customers)) {
+				echo "
+					<tr>
+						<td></td>
+						<td><a href='add-customer.php' >Click here to create an account.</a></td>
+						<td></td>				
+						<td></td>				
+						<td></td>				
+						<td></td>				
+						<td></td>				
+						<td></td>				
+					</tr>
+				";
 			} else {
-				$customer->active = 'Inactive';
+				// Count the number of rows.
+				$count = 0;
 
-				$class = "
-					style='color: brown;
-					font-weight: bold;
-				'";
+				foreach ($customers as $customer) {
+					if (isset($customer->active) && $customer->active === 1) {
+						$customer->active = 'Active';
+
+						$class = "class='active'";
+					} else {
+						$customer->active = 'Inactive';
+
+						$class = "
+							style='color: brown;
+							font-weight: bold;
+						'";
+					}
+
+					// Count column.
+					$count++;
+					for ($i = 0; $i < $count; $i++) { 
+						$Sr = $count;
+					}
+
+					// Display account details.
+					echo "
+						<tr>
+							<td>". $Sr ."</td>
+							<td><a href='profile.php?id=". $customer->id ."'>". $customer->firstname .' '. $customer->middlename .' '. $customer->lastname ."</a></td>
+							<td>". $customer->acctNum ."</td>
+							<td><a href='mailto:binemmanuel@mail.com'>". $customer->email ."</a></td>
+							<td>". $customer->phoneNo ."</td>
+							<td>". getDateFormated( $customer->createdOn ) ."</td>
+							<td ". $class .">". $customer->active ."</td>
+							<td>
+								<span>
+									<a href='?id=". $customer->id ."&action=delete' class='btn danger delete-btn float-right'><i class='fa fa-trash'></i>&nbsp; Delete </a>
+								</span>
+							</td>
+						</tr>
+					";
+				} // End of for loop
 			}
-
-			// Count column.
-			$count++;
-			for ($i = 0; $i < $count; $i++) { 
-				$Sr = $count;
+			break;
+			
+		case '/bank/admin/reports.php':
+			// Iterate though the customers object.
+			foreach ($customers as $customer) {
+				echo "
+					<tr>
+						<td>". $customer->firstname .' '. $customer->middlename .' '. $customer->lastname ."</td>
+						<td>". $customer->acctNum ."</td>
+					</tr>
+				";
 			}
+			break;
 
-			// Display account details.
-			echo "
-				<tr>
-					<td>". $Sr ."</td>
-					<td><a href='profile.php?id=". $customer->id ."'>". $customer->firstname .' '. $customer->middlename .' '. $customer->lastname ."</a></td>
-					<td>". $customer->acctNum ."</td>
-					<td><a href='mailto:binemmanuel@mail.com'>". $customer->email ."</a></td>
-					<td>". $customer->phoneNo ."</td>
-					<td>". getDateFormated( $customer->createdOn ) ."</td>
-					<td ". $class .">". $customer->active ."</td>
-					<td>
-						<span>
-							<a href='?id=". $customer->id ."&action=delete' class='btn danger delete-btn float-right'><i class='fa fa-trash'></i>&nbsp; Delete </a>
-						</span>
-					</td>
-				</tr>
-			";
-		} // End of for loop
+		default:
+			# code...
+			break;
 	}
 
 
@@ -315,7 +335,8 @@ function getCustomer(int $numCustomers = null) {
  * 
  * @return bool Returns false || true if the customer's email ID already exits.
  */
-function getUser(int $numCustomers = null) {
+
+function getUser(int $numCustomers = null, string $order = null): array {
 	// Get a large number of customers if $numCustomers is not specified.
 	if (is_null($numCustomers)) {
 		$numCustomers = 2000000;
@@ -324,15 +345,36 @@ function getUser(int $numCustomers = null) {
 	// Initialize an empty array.
 	$data = [];
 
-	/*
-	 * Instantiate an object.
-	 */
-	if (User::getUsers(2000000) == true) {
-		array_push($data, User::getUsers(2000000));
+	switch ($_SERVER['PHP_SELF']) {
+		case '/bank/admin/users.php':
+			/*
+			 * Instantiate an object.
+			 */
+			if (User::getUsers($numCustomers, $order) == true) {
+				array_push($data, User::getUsers($numCustomers, $order));
 
-		foreach ($data as $user) {
-			return $user;
-		}
+				foreach ($data as $user) {
+					return $user;
+				}
+			}
+			break;
+		
+		case '/bank/admin/reports.php':
+			/*
+			 * Instantiate an object.
+			 */
+			if (User::getUsers($numCustomers, $order) == true) {
+				array_push($data, User::getUsers($numCustomers, $order));
+
+				foreach ($data as $user) {
+					return $user;
+				}
+			}
+			break;
+
+		default:
+			# code...
+			break;
 	}
 
 	return false;
@@ -344,7 +386,7 @@ function getUser(int $numCustomers = null) {
  * @param date Date to be formated.
  * 
  */
-function getDateFormated($date) {
+function getDateFormated(string $date) {
 	/*
 	 *Format date to d, m year.
 	 */
@@ -365,9 +407,19 @@ function getDateFormated($date) {
 	return $dateFormat;
 }
 
+/*
+ * The function that fetches newly registered customers data by ID.
+ *
+ * @param int number of customers to fetch.
+ *
+ * @return A table of The customer's data.
+ */
+function getNewCutomers( string $n) {
+	
+}
 
 /*
- * The function that fetches a customers data by ID.
+ * The function that fetches customers data by ID.
  *
  * @param int Customer's ID.
  * 
@@ -547,6 +599,17 @@ function getCustomerById($id = null){
 		<a href='?id=". $customer[0]->id ."&action=delete' class='btn danger delete-btn float-right'><i class='fa fa-trash'></i>&nbsp; Delete </a>
 	</span>
 	";
+}
+
+/*
+ * This function displays Page Count for pagination.
+ */
+function displayPageNum(int $page, int $totalPages){
+	for ($page = 1; $page <= $totalPages; $page++) { 
+
+		echo "<li class='page-item '><a class='page-link' href='"."?page=". $page ."'>". $page ."</a></li>";
+
+	}
 }
 
 /*
@@ -932,8 +995,19 @@ function search(string $keyWord, string $page) {
 	$search = new Search($keyWord, $page);
 
 	 echo $search->search();
-	
+}
 
+/*
+ * The function that fetches.
+ * 
+ * @return int Returns the total number of rows in db.
+ */
+function getTotalNumOfRows(string $tableName): int {
+	// Sanitize and store table name.
+	$tableName = htmlspecialchars(stripcslashes(trim($tableName)));
+
+	// Return the number of rows.
+	return Transaction::countRows($tableName);
 }
 
 /*

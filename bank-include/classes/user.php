@@ -367,7 +367,32 @@ class User{
 	 * @Option param int Numbers of rows to be retrieved (default = 2000000).
 	 * @param string Retrieve User's objects ordered by First Name in descending order.
 	 */
-	public static function getUsers(int $numRows = null, string $order = 'firstname') {
+	public static function getUsers(int $numRows = null, string $order = null) {
+		// Store the value of $order if it's set.
+		if ($order != 'lastname') {
+			// Sort in ascending order.
+			$ascend = 'ASC';
+		} else {
+			// Sort in descending order.
+			$ascend = 'DESC';
+
+			// Fetch last 10 inserted data.
+			/*$numRows = 10;*/
+
+		}
+
+
+		if ($order !== 'createdOn') {
+			// Sort in ascending order.
+			$ascend = 'ASC';
+		} else {
+			// Sort in descending order.
+			$ascend = 'DESC';
+
+			// Fetch last 10 inserted data.
+			$numRows = 10;
+		}
+
 		/*
 		 * Create a connection to the database.
 		 */

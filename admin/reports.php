@@ -18,45 +18,129 @@ require 'header.php';
 
 <div class="col-md-12" id="result">
 	<div class="text-center col-md-12 mb-4 heading">
-		<h2>Reports</h2>
+		<h5>Reports</h5>
 	</div>
 
-	<div class="col-md-12 mb-4">
-		<div class="container profile-area">
-			<div class="row ">
-				<div class="profile-wrap col-md-12">
-					<div class="col-md-4 float-left"">
-						<img src="http://localhost/bank/admin/uploads/image/BMS_IMG_Binson.jpg" style="background: blue; border: 5px solid gray; border-radius: 100%;">
-					</div>
+	<div class="report-section col-md-12 mb-4">
+		
+		<!-- Side Bar -->
+		<div class="row col-md-4 col-sm-12 float-right">
+			<div class="sidebar-content col-md-12">
+				<div class="sidebar-heading col-md-12">
+					<h5 class="text-center"> Newly Registered Customers </h5>
+				</div>
+			
+				<div class="sidebar-body container">
+					<div class="table-responsive" >
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Acct No</th>
+								</tr>
+							</thead>
 
-					<div class="col-md-8 float-right">
-						<p>
-							<h3>Bio</h3>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</p>
+							<tbody>
+								<?php
+								#####################################################
+									// Get a list of newly registered  customers.
+									// Order by firstname.
+									getCustomer('createdOn', 0, 5);
+								#####################################################
+								?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="profile-wrap col-md-12">
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</p>
+			<div class="sidebar-content col-md-12">
+				<div class="sidebar-heading col-md-12">
+					<h5 class="text-center"> Newly Registered Users </h5>
 				</div>
-			</div>	
+				
+				<div class="sidebar-body container">
+					<div class="table-responsive" >
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>User Role</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<?php
+								##############################################
+									// Get a list of newly register users.
+									// Order by firstname.
+									$users = getUser(10, 'createdOn');
+								##############################################
+
+								foreach ($users as $user) {
+									echo "
+										<tr>
+											<td>". $user['firstname'] ." ". $user['middlename'] ." ". $user['lastname'] ."</td>
+											<td>". $user['userRole'] ."</td>
+										</tr>
+									";
+								}
+
+								?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
+		<!-- Side Bar -->
+
+		<!-- <div class="col-lg-9 col-12">
+            <div class="resorce-wrap">
+                <div id="chartContainer">
+                	Graph goes here
+                </div>
+            </div>
+        </div> -->
+
+
+		<!-- Transaction Row -->
+        <div class='row col-md-8'>
+			<div class="container ">
+				<div class="transaction-heading text-center">
+					Transactions
+				</div>
+
+				<div class="container">
+					
+
+					<div class="transactions transaction-area">
+						<?php
+						######################################################
+							// Get all recent transactions 
+							$transaction = Transaction::getTransactions(0, 5);
+						######################################################
+						?>
+
+					</div>
+						
+					<div>
+						<button class='btn btn-cus float-left' id='prev'> Prev </button>
+
+						<button class='btn btn-cus float-right' id='next'> Next </button>
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- Transaction Row ends -->
+
+
 	</div>
+
 </div>
 
 <?php

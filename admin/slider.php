@@ -1,35 +1,56 @@
 <!-- all css here -->
+<!-- bootstrap v3.3.7 css -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<!-- bootstrap v3.3.7 js -->
+<link rel="stylesheet" href="assets/js/bootstrap.min.js">
+
+
 <!-- Top Slider CSS -->
-<link href="assets/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
-
-<!-- Start slider -->
-<section id="aa-slider" style="background: gray;">
-	<div class="aa-slider-area">
-		<div id="sequence" class="seq">
-			<div class="seq-screen">
-				
-				<ul class="seq-canvas">
-					<!-- single slide item -->
-					<li>
-						<div class="seq-model">
-							<img data-seq src="assets/images/slider/1.jpg" alt="Men slide img" />
-						</div>
-		
-						<div class="seq-title">
-							<span data-seq>Save Up to 75% Off</span>                
-							<h2 data-seq>Men Collection</h2>                
-							<p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-							<a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
-						</div>
-					</li>
-				</ul>
-
-			</div>
-			<fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-		      <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-		      <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-		    </fieldset>
-		</div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+	  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	  <li data-target="#myCarousel" data-slide-to="1"></li>
+	  <li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner">
+	  <div class="carousel-item active">
+	    <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+	    <div class="container">
+	      <div class="carousel-caption text-left">
+	        <h1>Example headline.</h1>
+	        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+	        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="carousel-item">
+	    <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+	    <div class="container">
+	      <div class="carousel-caption">
+	        <h1>Another example headline.</h1>
+	        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+	        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="carousel-item">
+	    <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+	    <div class="container">
+	      <div class="carousel-caption text-right">
+	        <h1>One more for good measure.</h1>
+	        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+	        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+	      </div>
+	    </div>
+	  </div>
 	</div>
+	<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Previous</span>
+	</a>
 
-</section>
+	<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Next</span>
+	</a>
+</div>
