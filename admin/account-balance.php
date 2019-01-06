@@ -15,8 +15,7 @@ if (isset($_POST['accNum'])) {
 	if ($result == true && $result->num_rows == 1) {
 		if ($row = $result->fetch_assoc()) {
 			$bal = number_format($row['acctBal']);
-			echo 'Account Balance: ₦'. $bal;	
-			 ?>
+			echo 'Account Balance: ₦'. $bal; ?>
 
 
 			<script type="text/javascript">

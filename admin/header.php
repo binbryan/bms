@@ -16,7 +16,7 @@ session_start();
 // Include connection file.
 require_once '..\bank-include\config.php';
 
-// Include functions file
+// Include connection file.
 require_once '..\bank-include\functions.php';
 
 ?>
@@ -38,6 +38,7 @@ require_once '..\bank-include\functions.php';
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
         <!-- Place favicon.ico in the root directory -->
+        
         <!-- all css here -->
         <!-- custom css -->
         <link rel="stylesheet" href="assets/css/custom.css">

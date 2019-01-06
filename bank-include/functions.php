@@ -5,6 +5,9 @@ require_once 'classes/user.php';
 // Include our User class
 require_once 'classes/customer.php';
 
+// Include our Transaction class
+require_once 'classes/transaction.php';
+
 /*
  * The function that inserts a Post into the database.
  *
@@ -39,6 +42,10 @@ function addUser(string $username, string $password, string $email, string $user
 		return true;
 	}
 	return false;
+}
+
+function getUser(): array{
+	# code...
 }
 
 /*
@@ -671,7 +678,7 @@ function verify(string $username, string $token): bool{
  *
  * @param string User's username.
  * 
- * @return bool Returns false || true if the user's email ID already exits.
+ * @return bool Returns false || true if the user's account is active.
  */
 function isActive(string $username): bool{
 	// Instantiate an Object.
@@ -699,29 +706,156 @@ function isActive(string $username): bool{
  * 
  * @return bool Returns false || true if the user's password is the right one.
  */
-function verifyPass($username, $password): bool{
+function verifyPass(string $username, string $password): bool{
 	/* Initialize an null variables */
 	$id = null;
 
 	// Instantiate an Object.
 	$pass = new User($id, $username, $password);
 
-	if (is_array($password = $pass->checkPass())) {
-		// Initialize an empty array to store the collected object.
-		$data = [];
+	if ($pass->checkPass() == true) {
+		if (is_array($password = $pass->checkPass())) {
+			// Initialize an empty array to store the collected object.
+			$data = [];
 
-		// Push the object into the array.
-		array_push($data, $password);
+			// Push the object into the array.
+			array_push($data, $password);
 
-		// Store session in variables
-		$_SESSION['loggedin'] = true;
-		$_SESSION['id'] = $data['0']['id'];
-		$_SESSION['username'] = $data['0']['username'];
-		$_SESSION['email'] = $data['0']['email'];
+			// Store session in variables
+			$_SESSION['loggedin'] = true;
+			$_SESSION['id'] = $data['0']['id'];
+			$_SESSION['username'] = $data['0']['username'];
+			$_SESSION['email'] = $data['0']['email'];
 
-		if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-			return true;
+			if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+				return true;
+			}
 		}
+	}
+
+	return false;
+}
+
+/*
+ * The function for making transfer of funds.
+ * 
+ * @param string The Transfer's Account Name.
+ * @param int The Transfer's Account Number.
+ * @param float The Amount to be Transfered.
+ * @param string The Receiver's Bank Name.
+ * @param string The Receiver's Account Name.
+ * @param int The Receiver's Account Number.
+ * 
+ * @return bool Returns false || true if the transaction was successful.
+ */
+//makeTransfer('Bin Danjuma Emmanuel', 558444985, 90, 'BMS',  'Jane Doe', 896584729);
+
+function makeTransfer(string $accName, int $accNum, float $amount, string $recBank, string $recAccName, int $recAccNum){
+	// Set transaction ID to Null
+	$id = null;
+	$userId = null;
+
+	// Instantiate an Object.
+	$bal = new Transaction($id, $userId, $accName, $accNum, $amount, $recBank, $recAccName, $recAccNum);
+
+	// Get the sender's current account balance.
+	if ($bal->getSendersBalance() == true) {
+
+		$balance = $bal->getSendersBalance();
+
+		// Deduct from sender's account balance.
+		if ($balance >= 0 && $balance >= $amount) {
+			$balance -= $amount;
+		
+			// Instantiate an Object.
+			$newBal = new Transaction($id, $userId, $accName, $accNum, $balance, $recBank, $recAccName, $recAccNum);
+			
+			// Update sender's account balance.
+			if ($newBal->updateBalance() == true) {
+				
+				############################
+				#	Transfer to Receiver   #
+				############################
+				// Instantiate an Object.
+				$recBal = new Transaction($id, $userId, $accName, $accNum, $amount, $recBank, $recAccName, $recAccNum);
+
+				// Get the receiver's current account balance.
+				if ($recBal->getReceiversBalance() == true) {
+					// Store the receiver's account balance.
+					$receiversBalance = $recBal->getReceiversBalance();
+
+					// Add to receiver's account balance.
+					$receiversBalance += $amount;
+					
+					// Instantiate an Object.
+					$transfer = new Transaction($id, $userId, $accName, $accNum, $receiversBalance, $recBank, $recAccName, $recAccNum);
+
+					// Update Receiver's account balance.					
+					if ($transfer->tranferFund() == true) {
+						return true;
+					}
+				}
+			}
+		}	
+	}
+
+	return false;
+}
+
+/*
+ * The function for making transfer of funds.
+ * 
+ * @param int ID of the user that made the Transaction.
+ * @param string The Transfer's Account Name.
+ * @param int The Transfer's Account Number.
+ * @param float The Amount to be Transfered.
+ * @param string The Receiver's Bank Name.
+ * @param string The Receiver's Account Name.
+ * @param int The Receiver's Account Number.
+ * 
+ * @return bool Returns false || true if the transaction was successful.
+ */
+
+function checkEligibility(int $accNum): bool{
+	$id = null;
+	$userId = null;
+	$accName = null;
+	$amtToTransfer = null;
+	$recBank = null;
+	$recAccName = null;
+	$recAccNum = null;
+	
+	// Instantiate an Object.
+	$checkBal = new Transaction($id, $userId, $accName, $accNum, $amtToTransfer, $recBank, $recAccName, $recAccNum);
+	
+	if ($checkBal->getSendersBalance() <= 1000) {
+		return false;
+	}
+
+	return true;
+}
+
+/*
+ * The function for making transfer of funds.
+ * 
+ * @param int ID of the user that made the Transaction.
+ * @param string The Transfer's Account Name.
+ * @param int The Transfer's Account Number.
+ * @param float The Amount to be Transfered.
+ * @param string The Receiver's Bank Name.
+ * @param string The Receiver's Account Name.
+ * @param int The Receiver's Account Number.
+ * 
+ * @return bool Returns false || true if the transaction was successful.
+ */
+function keepRecord(int $userId, string $accName, int $accNum, float $amtTransfered, string $recBank, string $recAccName, int $recAccNum): bool{
+	$id = null;
+	// Instantiate an Object.
+	$transaction = new Transaction($id, $userId, $accName, $accNum, $amtTransfered, $recBank, $recAccName, $recAccNum);
+
+	// Check if record was successfully made.
+	if ($transaction->recordTransaction()) {
+		return true;
 	}
 
 	return false;
@@ -749,13 +883,14 @@ function isLogedOut(): bool{
 }	
 
 /*
- * The function that takes users to the login page.
+ * The function that logs the user in.
  * 
  */
 function login(){
-	// Redirect.
-	header("location: login.php");
+	// Redirect.	
+	header('LOCATION: index.php');
 	exit;
+		
 }
 
 /*

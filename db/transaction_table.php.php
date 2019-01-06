@@ -19,7 +19,7 @@ $tableName = "bank_transaction";
 $sql = "CREATE TABLE ". $tableName ." (
 id INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
 
-adminId INTEGER NOT NULL,
+userId INTEGER NOT NULL,
 
 accName VARCHAR(25) NOT NULL,
 

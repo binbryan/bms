@@ -19,7 +19,7 @@ $(document).ready( function(){
 	// Get account bal.
 	function getAcctBal(accNum){
 		if (accNum != '') {
-			$("document").load('account-balance.php', {
+			$("#accBal").load('account-balance.php', {
 				accNum: accNum
 			});
 		}

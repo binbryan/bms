@@ -11,7 +11,7 @@ class Transaction{
 	/*
 	 *	@var int The Admin's.
 	 */
-	private $adminId;
+	private $userId;
 
 	/*
 	 *	@var int The Account Name.
@@ -48,54 +48,73 @@ class Transaction{
 	 */
 	private $transactionDate;
 
-	public function __construct(int $id = null, int $adminId = null, string $accName = null, int $accNum = null, float $amtToTransfer = null, string $recBank = null, string $recAccName = null, int $recAccNum = null, string $transactionDate = null) {
+	public function __construct(int $id = null, int $userId = null, string $accName = null, int $accNum = null, float $amtToTransfer = null, string $recBank = null, string $recAccName = null, int $recAccNum = null, string $transactionDate = null) {
 
-		if (isset($id)) {
+		if (!empty($id)) {
 			$this->id = $id;
 		}
 
-		if (isset($adminId)) {
-			$this->adminId = $adminId;
+		if (!empty($userId)) {
+			$this->userId = $userId;
 		}
 
-		if (isset($accName)) {
+		if (!empty($accName)) {
 			$this->accName = $accName;
 		}
 
-		if (isset($accNum)) {
+		if (!empty($accNum)) {
 			$this->accNum = $accNum;
 		}
 
-		if (isset($amtToTransfer)) {
+		if (!empty($amtToTransfer)) {
 			$this->amtToTransfer = $amtToTransfer;
 		}
 
-		if (isset($recBank)) {
+		if (!empty($recBank)) {
 			$this->recBank = $recBank;
 		}
 
-		if (isset($recAccName)) {
+		if (!empty($recAccName)) {
 			$this->recAccName = $recAccName;
 		}
 
-		if (isset($recAccNum)) {
+		if (!empty($recAccNum)) {
 			$this->recAccNum = $recAccNum;
 		}
 
-		if (isset($transactionDate)) {
+		if (!empty($transactionDate)) {
 			$this->transactionDate = $transactionDate;
 		}
 
 	}
 
-	public function insert(): bool {
+	/*
+	 *	Insert Transaction object in the database.
+	 */
+	public function recordTransaction(): bool {
 		// Include connection file.
-		require_once '..\config.php';
+		/*require_once '..\config.php';*/
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
 
-		// Prepare & Bind param
-		$sql = $conn->prepare("INSERT INTO bank_transaction(userId, accName, accNum, recBank, recAccName, recAccNum, transactionDate) VALUES(?, ?, ?, ?, ?, ?, ?)");
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
 
-		/*$result  = $sql->bind_param('sssssss', $this->adminId, $this->accName, $this->accNum, $this->recBank, $this->recAccName, $this->recAccNum, $this->transactionDate);
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		// Prepare statement.
+		/*$sql = $conn->prepare("INSERT INTO bank_transaction(userId, accName, accNum, recBank, recAccName, recAccNum, amtToTransfer, transactionDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");*/
+
+		$sql = $conn->prepare("INSERT INTO bank_transaction(userId, accName, accNum, amount, recBank, recAccName, recAccNum, transactionDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+
+		// Bind parameters.
+		$result  = $sql->bind_param('isiissis', $this->userId, $this->accName, $this->accNum, $this->amtToTransfer, $this->recBank, $this->recAccName, $this->recAccNum, $this->transactionDate);
 
 		// Execute query.
 		$result = $sql->execute();
@@ -103,7 +122,7 @@ class Transaction{
 		// Check if query was successful.
 		if ($result == true) {
 			return true;
-		}*/
+		}
 
 		$sql->close();
 		$conn->close();
@@ -111,11 +130,179 @@ class Transaction{
 		return false;
 	}
 
+	/*
+	 *	Updates the sender's account balance.
+	 */
+	public function updateBalance(): bool{
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+
+		$sql = $conn->prepare("UPDATE bank_customers SET acctBal = ? WHERE acctNum = ?");
+
+		// Bind parameters.
+		$result  = $sql->bind_param('ii', $this->amtToTransfer, $this->accNum);
+
+		// Execute query.
+		$result = $sql->execute();
+
+		// Check if query was successful.
+		if ($result == true) {
+			return true;
+		}
+
+		$sql->close();
+		$conn->close();
+	}
+
+	/*
+	 *	Transfer fund.
+	 *	
+	 *	Updates the receiver's account balance.
+	 */
+	public function tranferFund(): bool{
+		// Include connection file.
+		/*require_once '..\config.php';*/
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		// Prepare a statement.
+		$sql = $conn->prepare("UPDATE bank_customers SET acctBal = ? WHERE acctNum = ?");
+
+		// Bind parameters.
+		$result  = $sql->bind_param('ii', $this->amtToTransfer, $this->recAccNum);
+
+		// Execute query.
+		$result = $sql->execute();
+
+		// Check if query was successful.
+		if ($result == true) {
+			return true;
+		}
+
+		// Close statement.
+		$sql->close();
+		
+		// Close connection.
+		$conn->close();
+		
+		return false;
+	}
+
+	/*
+	 *	Fetch Sender's account balance.
+	 */
+	public function getSendersBalance(): float{
+		// Include connection file.
+		/*require_once '..\config.php';*/
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		$sql = $conn->prepare("SELECT acctBal FROM bank_customers WHERE acctNum = ? LIMIT 1");
+
+		// Bind parameters.
+		$sql->bind_param('i', $this->accNum);
+
+		// Execute query.
+		$sql->execute();
+
+		// Bind result value
+		$sql->bind_result($bal);
+
+		if ($sql->fetch() == true) {
+			return $bal;
+		}
+		// Close statement.
+		$sql->close();
+		
+		// Close connection.
+		$conn->close();
+		
+		return false;
+	}
+
+	/*
+	 *	Fetch Sender's account balance.
+	 */
+	public function getReceiversBalance(): float{
+		// Include connection file.
+		/*require_once '..\config.php';*/
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		$sql = $conn->prepare("SELECT acctBal FROM bank_customers WHERE acctNum = ? LIMIT 1");
+
+		// Bind parameters.
+		$sql->bind_param('i', $this->recAccNum);
+
+		// Execute query.
+		$sql->execute();
+
+		// Bind result value
+		$sql->bind_result($bal);
+
+		if ($sql->fetch() == true) {
+			return $bal;
+		}
+		// Close statement.
+		$sql->close();
+		
+		// Close connection.
+		$conn->close();
+		
+		return false;
+	}
+
+
 	/*public function getTransactionDetails(): array {
 		$data = [];
 
 		$transaction['id'] = $this->id;
-		$transaction['adminId'] = $this->adminId;
+		$transaction['userId'] = $this->userId;
 		$transaction['accName'] = $this->accName;
 		$transaction['accNum'] = $this->accNum;
 		$transaction['AuthorId'] = $this->AuthorId;
@@ -128,7 +315,3 @@ class Transaction{
 		return $data;
 	}*/
 }
-
-$transaction = new Transaction($id = 1, $adminId = null, $accName = 'Bin Danjuma Emmanuel', $accNum = 749998878, $amtToTransfer = 9000.91, $recBank = 'Bank Management System', $recAccName = 'Jane Doe', $recAccNum = 749998744, $transactionDate = 2019);
-
-var_dump($transaction->insert());
