@@ -310,12 +310,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 </div>
 
 <div class="col-md-12 order-md-1">
-	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-md-4 mb-3">
 				<label for="firstName">First name</label>
 
-				<span class="float-right error"><?php if (isset($firstName_err)) { echo $firstName_err; } ?></span>
+				<span class="float-right "><?php if (isset($firstName_err)) { echo $firstName_err; } ?></span>
 				<input type="text" name="firstName" class="form-control" id="firstName" value="<?php if (isset($param_firstName)) { echo $param_firstName; } ?>"  required="required">
 			</div>
 
@@ -343,7 +343,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 						<span class="input-group-text">@</span>
 					</div>
 
-					<input type="text" name="email" class="form-control" id="email" placeholder="example@mail.com" value="<?php if (isset($param_email)) { echo $param_email; } ?>" >
+					<input type="text" name="email" class="form-control" id="email" placeholder="example@mail.com" value="<?php if (isset($param_email)) { echo $param_email; } ?>" required="required">
 				</div>
 			</div>
 
@@ -514,6 +514,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 				</div>
 				
 				<span class="float-right"><?php if (isset($password1_err)) { echo $password1_err; } ?></span>
+			</div>
+
+			<div class="col-md-12 text-center">
+				<div style="width: 50%; margin: 10px auto; padding: 15px; height: 50px; border-radius: 10px; box-shadow: 0 1px 6px rgba(147, 147, 147, 0.7);">
+					<input type="file" name="pic" value="" />
+				</div>
 			</div>
 		</div>
 

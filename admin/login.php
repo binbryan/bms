@@ -1,3 +1,8 @@
+<?php
+// Include process-login.php
+require_once 'process-login.php';
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -61,17 +66,13 @@
 
 			}
 		</script>
-		<?php 
-		var_dump($_SESSION);
 		
-		if (isset($_SESSION)) {
-			header('LOCATION: index.php');
-			exit;
-		} ?>
 	</head>
 	
 
 	<body class="text-center">
+		
+
 		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" class="form-signin">
 			<i class="fa fa-user large" onclick="test()"></i>
 			<br/>

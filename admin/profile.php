@@ -679,7 +679,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "no") {
 	$id = $_GET['id'];
 
 	$link = $_SERVER['PHP_SELF'] .'?id='. $id;
-
+	
 	header('LOCATION: '. $link);
 	exit;
 }
@@ -696,7 +696,9 @@ if (isset($_GET['delete']) && $_GET['delete'] === "no") {
 <div class="container">
 	<div class="table-responsive">
 		<?php
-			getCustomerById($id);
+			if (!empty($id)) {
+				getCustomerById($id);
+			}
 		?>		
 	</div>
 </div>

@@ -24,7 +24,7 @@ require_once '..\bank-include\functions.php';
 <!DOCTYPE html>
 <html>
     <head>
-    	<title>
+        <title>
             <?php
             if (isset($pageTitle)) {
                 echo $pageTitle .' | Bank Management System';
@@ -32,7 +32,7 @@ require_once '..\bank-include\functions.php';
                 echo 'Bank Management System';
             } ?>    
         </title>
-    	<meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,10 +70,10 @@ require_once '..\bank-include\functions.php';
         <script src="assets/js/custom.js"></script>
     </head>
     <body>
-    	<!--[if lt IE 8]>
+        <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        	
+            
         <!-- header-area start -->
         <header class="header-area">
             <div class="header-nav">
@@ -94,23 +94,23 @@ require_once '..\bank-include\functions.php';
         <main>
             <div class="content-area">
 
-                    <?php
-                    if (!isset($pageTitle)) {
-                        echo "        
-                        <div class='header-info'>
-                            <h1>Management System</h1>
+                <?php
+                if (!isset($pageTitle)) {
+                    echo "        
+                    <div class='header-info'>
+                        <h1>Management System</h1>
 
-                            <hr class='mb-4'>
-                            
-                            <div class='site-description'>
-                                <p>Some text here</p>
-                            </div><!-- .site-description -->
+                        <hr class='mb-4'>
+                        
+                        <div class='site-description'>
+                            <p>Some text here</p>
+                        </div><!-- .site-description -->
 
-                            <hr class='mb-5'>
-                        </div> <!-- .header-info --> ";
-                    }
-                    ?>
-
+                        <hr class='mb-5'>
+                    </div> <!-- .header-info --> ";
+                }
+                var_dump($_FILES);
+                ?>
                 
                 <div class="container">
                     <div class="row">

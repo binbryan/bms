@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 					echo "<span class='error popIn'>Incorrect Password or User account is not active</span>";
 				} else {
 					// Log the user in.
-					login();
+					//login();
 					//var_dump($_SESSION);
 				}
 			}	
@@ -38,5 +38,5 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	}
 } else {
 	// Print an error message.
-	echo "Something went wrong, contact <a href='mailto:binemmanuel@ymail.com'> admin </a>";
+//	$error_message = "Something went wrong, contact <a href='mailto:binemmanuel@ymail.com'> admin </a>";
 }
