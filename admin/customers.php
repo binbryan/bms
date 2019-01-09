@@ -57,7 +57,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 </div>
 
 <div class="container">
-	<div class="table-responsive">
+	<div class="table-responsive" id="result">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -66,7 +66,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 					<th>Account No</th>
 					<th>Email</th>
 					<th>Phone No</th>
-					<th>Date</th>
+					<th>Created On</th>
 					<th>Status</th>
 					<th>
 						<div class="float-right sm-width">
@@ -78,7 +78,6 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 			</thead>
 			
 			<tbody>
-
 				
 				<?php 
 				##################################
@@ -87,7 +86,6 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 				##################################
 				?>
 				
-
 			</tbody>
 		</table>
 

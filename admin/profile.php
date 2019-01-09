@@ -15,8 +15,6 @@ $id = '';
 // Include our header.php file
 require 'header.php';
 
-
-
 // Collect ID from .edit-modal.
 if (isset($_POST['id'])) {
 	$id = $_POST['id'];
@@ -26,8 +24,6 @@ if (isset($_POST['id'])) {
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 }
-
-
 
 ###############################################
 #	The block for editing customer's email.   #
@@ -221,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit-email']) && isse
 	// Collect data to be uploaded.
 	$email = htmlspecialchars(stripcslashes(trim($_POST['email'])));
 
-	#############################################################################
+	########################################################################################################
 		// Update email.
 		if (updateAccount($id, $email, $phoneNo, $address, $city) === true && !isset($email_err)) { ?>
 			<script type="text/javascript">
@@ -231,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit-email']) && isse
 				});
 			</script>
 		<?php }
-	#############################################################################
+	########################################################################################################
 }
 
 ################################################

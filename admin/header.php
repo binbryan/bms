@@ -79,7 +79,44 @@ require_once '..\bank-include\functions.php';
             <div class="header-nav">
                 <span class="title-cus"><a href="index.php"> Company Name </a></span>
                 
-                <span class="search-bar"><input type="text" name="search" placeholder="Search" required="required" /></span>
+                <!-- Header Search Bar -->
+                <span class="search-bar">
+                        <script type="text/javascript">
+                            function validate() {
+                                $("ducument").ready(function () {
+                                    event.preventDefault();
+
+                                    var page = $("#page").val();
+                                    var search = $("#search").val();
+
+                                    //document.getElementById("result").innerHTML = search;
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        
+                                        url: 'search.php',
+                                        
+                                        data: {
+                                            action: 'search',
+                                            page: page,
+                                            search: search
+                                        },
+                                        
+                                        success: function (response) {
+                                            document.getElementById("result").innerHTML = response;
+                                        }
+                                    });
+                                });
+
+                            }
+                        </script>
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET" style="display: inline-block;">
+                        <input type="hidden" name="action" value="search" />
+                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" />
+
+                        <input type="text" id="search" onkeyup="validate()" placeholder="<?php if (isset($keyWord)) { echo $keyWord; } else { echo "Search"; } ?>" />
+                    </form>
+                </span>
 
                 <span class="logout"><a href="logout"><i class="fa fa-sign-out"></i> Logout</a></span>
             </div><!-- .header-nav -->
@@ -109,8 +146,6 @@ require_once '..\bank-include\functions.php';
                         <hr class='mb-5'>
                     </div> <!-- .header-info --> ";
                 }
-                var_dump($_FILES);
                 ?>
-                
                 <div class="container">
                     <div class="row">

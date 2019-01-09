@@ -12,7 +12,7 @@ date_default_timezone_set('Africa/Lagos'); //http://www.php.net/manual/en/timezo
 
 //Store credentials in variables
 $servername = 'localhost';
-$siteurl = 'http://localhost';
+$siteurl = 'http://localhost/bank';
 $username = 'binemmanuel';
 $password = 'FASTlogin89';
 $dbname = 'bank_';

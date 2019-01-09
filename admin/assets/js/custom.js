@@ -6,13 +6,13 @@ $(document).ready( function(){
 
 	$(".close").click(function() {
 		// Hide modal.
-		$(".delete-modal").fadeOut();
+		$(".delete-modal, .edit-modal, .error-modal").fadeOut();
 	});
 
-	$(".close").click(function() {
+	/*$(".close").click(function() {
 		// Hide modal.
 		$(".edit-modal").fadeOut();
-	});
+	});*/
 });
 
 //#############################

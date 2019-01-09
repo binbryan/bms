@@ -24,9 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['firstName'])) {
 		// Store an error message.
 		$firstName_err = "Please enter your first name";
+		$error = 1;
 	} else {
 		// Store the customer's First Name.
 		$param_firstName = htmlspecialchars(stripslashes(trim($_POST['firstName'])));
+		$error = 0;
 	}
 
 	/**
@@ -35,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (!empty($_POST['middleName'])) {
 		// Store an error message.
 		$param_middleName = htmlspecialchars(stripcslashes(trim($_POST['middleName'])));
+		$error = 1;
 	}
 
 	/**
@@ -43,9 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['lastName'])) {
 		// Store an error message.
 		$lastName_err = "Please enter your last name";
+		$error = 1;
 	} else {
 		// Store the customer's Last Name.
 		$param_lastName = htmlspecialchars(stripslashes(trim($_POST['lastName'])));
+		$error = 0;
 	}
 
 	/**
@@ -54,9 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['username'])) {
 		// Store an error message.
 		$username_err = "Please enter a username";
+		$error = 1;
 	} else {
 		// Store the customer's Last Name.
 		$username = htmlspecialchars(stripslashes(trim($_POST['username'])));
+		$error = 0;
 
 		/**
 		 * Check if the username already exist.
@@ -64,9 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 		if (_checkUsername($username) === true) {
 			// Store an error message.
 			$username_err = "Sorry, the username is already taken";
+			$error = 1;
 		} else {
 			// Store the customer's Last Name.
-			$param_username = htmlspecialchars(stripslashes(trim($_POST['username'])));			
+			$param_username = htmlspecialchars(stripslashes(trim($_POST['username'])));
+			$error = 0;
 		}
 	}
 
@@ -76,9 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['email'])) {
 		// Store an error message.
 		$email_err = "Please enter your email address";
+		$error = 1;
 	} else {
 		// Store the user's email address.
 		$email_format = htmlspecialchars(stripcslashes(trim($_POST['email'])));
+		$error = 0;
 
 		/**
 		 * Validate the email address.
@@ -86,9 +97,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 		if(!filter_var($email_format, FILTER_VALIDATE_EMAIL)){
 			// Store an error message.
 			$email_err = "Invalid email format";
+			$error = 1;
 		}else{
 			// Store the email address.
 			$email = htmlspecialchars(stripcslashes(trim($_POST['email'])));
+			$error = 0;
 
 			/**
 			 * Check if the email address is already exist.
@@ -96,9 +109,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			if (_checkEmail($email) === true) {
 				// Store an error message.
 				$email_err = "Sorry, the email address is already taken";
+				$error = 1;
 			} else {
 				// Store the customer's Last Name.
-				$param_email = htmlspecialchars(stripslashes(trim($_POST['email'])));			
+				$param_email = htmlspecialchars(stripslashes(trim($_POST['email'])));
+				$error = 0;
 			}
 		}
 	}
@@ -109,9 +124,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['phoneNo'])) {
 		// Store an error message.
 		$phoneNo_err = "Please enter your phone number";
+		$error = 1;
 	} else {
 		// Store the phone number.
 		$phoneNo = htmlspecialchars(stripcslashes(trim($_POST['phoneNo'])));
+		$error = 0;
 
 		/**
 		 * Validate.
@@ -119,9 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 		if (strlen($phoneNo) < 11 || strlen($phoneNo) > 15) {
 			// Store an error message.
 			$phoneNo_err = "Please enter a valid phone number";
+			$error = 1;
 		} else {
 			// Store the phone number.
 			$param_phoneNo = htmlspecialchars(stripcslashes(trim($_POST['phoneNo'])));
+			$error = 0;
 		}
 	}
 
@@ -131,9 +150,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['address'])) {
 		// Store an error message.
 		$address_err = "Please enter your address";
+		$error = 1;
 	} else {
 		// Store the address.
 		$param_address = htmlspecialchars(stripcslashes(trim($_POST['address'])));
+		$error = 0;
 	}
 
 	/**
@@ -142,6 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (!empty($_POST['address1'])) {
 		// Store an error message.
 		$param_address1 = htmlspecialchars(stripcslashes(trim($_POST['address1'])));
+		$error = 1;
 	}
 
 	/**
@@ -150,9 +172,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if($_POST['gender'] == "Select Gender"){
 		// Store an error message.
 		$gender_err = "Please select your gender";
+		$error = 1;
 	}else{
 		// Store the customer's gender.
 		$param_gender = htmlspecialchars(stripcslashes(trim($_POST['gender'])));
+		$error = 0;
 	}
 
 	/**
@@ -161,9 +185,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if(empty($_POST['dateOfBirth'])){
 		// Store an error message.
 		$dateOfBirth_err = "Please enter your date of birth";
+		$error = 1;
 	}else{
 		// Store the customer's date of birth.
 		$param_dateOfBirth = htmlspecialchars(stripcslashes(trim($_POST['dateOfBirth'])));
+		$error = 0;
 	}
 
 	/**
@@ -172,9 +198,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if(empty($_POST['country'])){
 		// Store an error message.
 		$country_err = "Please select your country";
+		$error = 1;
 	}else{
 		// Store the country.
 		$param_country = htmlspecialchars(stripcslashes(trim($_POST['country'])));
+		$error = 0;
 	}
 
 	/**
@@ -183,9 +211,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if(empty($_POST['state'])){
 		// Store an error message.
 		$state_err = "Please select your state";
+		$error = 1;
 	}else{
 		// Store the state.
 		$param_state = htmlspecialchars(stripcslashes(trim($_POST['state'])));
+		$error = 0;
 	}
 
 	/**
@@ -194,15 +224,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['zipcode'])) {
 		// Store an error message.
 		$zipcode_err = "Please enter your Zip Code";
+		$error = 1;
 	} elseif (!is_numeric($_POST['zipcode'])) {
 		// Store an error message.
 		$zipcode_err = "Please enter a valid Zip Code";
+		$error = 1;
 	} elseif (strlen($_POST['zipcode']) < 4) {
 		// Store an error message.
 		$zipcode_err = "Zip Code should be 4 numbers";
+		$error = 1;
 	} else {
 		// Store the state.
 		$param_zipcode = htmlspecialchars(stripcslashes(trim($_POST['zipcode'])));
+		$error = 0;
 	}
 
 	/**
@@ -211,9 +245,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['lga'])) {
 		// Store an error message.
 		$lga_err = "Please enter your Local Government Area";
+		$error = 1;
 	} else {
 		// Store the LGA
 		$param_lga = htmlspecialchars(stripcslashes(trim($_POST['lga'])));
+		$error = 0;
 	}
 
 	/**
@@ -222,9 +258,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if (empty($_POST['lga'])) {
 		// Store an error message.
 		$lga_err = "Please enter your Local Government Area";
+		$error = 1;
 	} else {
 		// Store the LGA.
 		$param_lga = htmlspecialchars(stripcslashes(trim($_POST['lga'])));
+		$error = 0;
 	}
 
 	/**
@@ -233,9 +271,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if($_POST['acctType'] == 'Select Account Type'){
 		// Store an error message.
 		$acctType_err = "Please select an Account Type";
+		$error = 1;
 	}else{
 		// Store the state.
 		$param_acctType = htmlspecialchars(stripcslashes(trim($_POST['acctType'])));
+		$error = 0;
 	}
 
 	/**
@@ -244,12 +284,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	if(empty($_POST['password'])){
 		// Store an error message.
 		$password_err = "Please enter your password";
+		$error = 1;
 	} elseif (strlen($_POST['password']) < 6) {
 		// Store an error message.
 		$password_err = "Password to short, entry at least 6 or more characters";
+		$error = 1;
 	} else {
 		// Store the state.
 		$param_password = htmlspecialchars(stripcslashes(trim($_POST['password'])));
+		$error = 0;
 
 		/**
 		 * Validate and Sanitize state.
@@ -257,9 +300,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 		if (empty($_POST['password1'])) {
 			// Store an error message.
 			$password1_err = "Please retype your password";
+			$error = 1;
 		} else {
 			// Store the state.
 			$param_password1 = htmlspecialchars(stripcslashes(trim($_POST['password1'])));
+			$error = 0;
 
 			/**
 			 * Verify password.
@@ -267,9 +312,58 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			if ($param_password != $param_password1) {
 				// Store an error message.
 				$password1_err = "Sorry! password didn't match";
+				$error = 1;
 			} else {
 				// Hash the password.
 	            $hashed_password = password_hash($param_password, PASSWORD_DEFAULT);
+	            $error = 0;
+			}
+		}
+	}
+
+	if ($error == 0) {
+		/*
+		 * Validate and Sanitize Profile Picture.
+		 */
+		if (empty($_FILES['upload']['name'])) {
+			// Store an error message.
+			$profilePic_err = "Please select a profile picture";
+		} else {
+			// Process the uploaded file.
+			// Target directory.
+			$target_dir = "uploads/image/";
+
+			// Tmp file name.
+			$tmpFileName = $_FILES['upload']['tmp_name'];
+
+			// Store the file name.
+			$fileName = "BMS_IMG_". $_FILES['upload']['name']; // add a prefix to the file name.
+			
+			echo "<br>";
+
+			// Validate file.
+			if (checkFileType($fileName) != true) {
+				// Store an error message.
+				$profilePic_err = "Invalid Image File";
+			} else {
+				// Where is store the file.
+				$target_file = $target_dir . basename($fileName);
+
+				// Return an error if the file exists.
+				if (file_exists($target_file)) {
+					// Store an error message.
+					$profilePic_err = "Sorry, the profile picture already exists";
+				} else {
+					// Store the URL
+					$param_passport = SITE_URL .'/admin/'. $target_file;
+					
+					// Upload the file.
+					if (uploadPic($tmpFileName, $target_file) != true) {
+						// Store an error message.
+						$profilePic_err = "Sorry, something went wrong when trying to upload the profile picture";
+					}
+				}
+				
 			}
 		}
 	}
@@ -277,7 +371,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	/**
 	 * Insert user data into the database if there are no errors.
 	 */
-	if (!isset($firstName_err) && !isset($lastname_err) && !isset($email_err) && !isset($phoneNo_err) && !isset($address_err) && !isset($gender_err) && !isset($dateOfBirth_err) && !isset($country_err) && !isset($state_err) && !isset($zipcode_err) && !isset($lga_err) && !isset($acctType_err) && !isset($username_err) && (!isset($password_err) || !isset($password1_err))) {
+	if ($error == 0) {
 		
 		// Store an empty Middle Name if it is not specified.		
 		if (empty($param_middleName)) {
@@ -291,16 +385,21 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			$param_acctNum = $acctNum;
 		}
 
+
 		/**
 		 * Insert user data into the database.
 		 */
-		if (addCustomer($param_username, $hashed_password, $param_email, $param_firstName, $param_middleName, $param_lastName, $param_acctNum, $param_acctType, $param_phoneNo, $param_dateOfBirth, $param_address, $param_gender, $param_country, $param_lga, $param_state/*, $param_passport*/) === true) {
+
+		if (isset($param_passport)) {
+			echo $param_passport;
+		}
+
+		if (addCustomer($param_username, $hashed_password, $param_email, $param_firstName, $param_middleName, $param_lastName, $param_acctNum, $param_acctType, $param_phoneNo, $param_dateOfBirth, $param_address, $param_gender, $param_country, $param_lga, $param_state, $param_passport) === true) {
 			echo "Customers account created successfully";
 		} else {
 			$error = "Sorry, something went wrong trying to create an account";
 		}
 	}
-	
 }
 ?>
 
@@ -315,7 +414,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			<div class="col-md-4 mb-3">
 				<label for="firstName">First name</label>
 
-				<span class="float-right "><?php if (isset($firstName_err)) { echo $firstName_err; } ?></span>
+				<?php if (isset($firstName_err)) { echo '<span class="float-right error">'. $firstName_err .'</span>';} ?>
 				<input type="text" name="firstName" class="form-control" id="firstName" value="<?php if (isset($param_firstName)) { echo $param_firstName; } ?>"  required="required">
 			</div>
 
@@ -328,7 +427,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			<div class="col-md-4 mb-3">
 				<label for="lastName">Last Name</label>
 
-				<span class="float-right"><?php if (isset($lastName_err)) { echo $lastName_err; } ?></span>
+				<?php if (isset($lastName_err)) { echo '<span class="float-right error">'. $lastName_err .'</span>'; } ?>
 				<input type="text" name="lastName" class="form-control" id="lastName" value="<?php if (isset($param_lastName)) { echo $param_lastName; } ?>" required="required">
 			</div>
 		</div>	
@@ -337,7 +436,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			<div class="col-md-6 mb-3">
 				<label for="Email">Email</label>
 				
-				<span class="float-right"><?php if (isset($email_err)) { echo $email_err; } ?></span>
+				<?php if (isset($email_err)) { echo '<span class="float-right error">'. $email_err .'</span>'; } ?>
 				<div class="input-group">					
 					<div class="input-group-prepend">
 						<span class="input-group-text">@</span>
@@ -351,7 +450,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			<div class="col-md-6 mb-3">	
 				<label for="Phone Number">Phone Number</label>
 
-					<span class="float-right"><?php if (isset($phoneNo_err)) { echo $phoneNo_err; } ?></span>
+					<?php if (isset($phoneNo_err)) { echo '<span class="float-right error">'. $phoneNo_err .'</span>'; } ?>
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<i class="input-group-text fa fa-phone"></i>
@@ -365,7 +464,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 		<div class="mb-3">
 			<label for="Address">Address</label>
 
-			<span class="float-right"><?php if (isset($address_err)) { echo $address_err; } ?></span>
+			<?php if (isset($address_err)) { echo '<span class="float-right error">'. $address_err .'</span>'; } ?>
 			<input type="text" name="address" maxlength="255" class="form-control" id="address" placeholder="1234 New World Street" value="<?php if (isset($param_address)) { echo $param_address; } ?>" required="required">
         </div>
 
@@ -392,7 +491,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 					<?php endif ?>					
 				</select>
-				<span class="float-right"><?php if (isset($gender_err)) { echo $gender_err; } ?></span>
+				<?php if (isset($gender_err)) { echo '<span class="float-right error">'. $gender_err .'</span>'; } ?>
 			</div>
     	</center>
 
@@ -401,35 +500,35 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 				<label for="country">Date Of Birth</label>
 				
 				<input type="date" name="dateOfBirth" class="form-control" value="<?php if (isset($param_dateOfBirth)) { echo $param_dateOfBirth; } ?>" required="required">
-				<span class="float-right"><?php if (isset($dateOfBirth_err)) { echo $dateOfBirth_err; } ?></span>
+				<?php if (isset($dateOfBirth_err)) { echo '<span class="float-right error">'. $dateOfBirth_err .'</span>'; } ?>
 			</div>
 
 			<div class="col-md-3 mb-3">
 				<label for="country">Country</label>
 				
 				<input type="text" name="country" class="form-control" value="<?php if (isset($param_country)) { echo $param_country; } ?>" required="required">
-				<span class="float-right"><?php if (isset($country_err)) { echo $country_err; } ?></span>
+				<?php if (isset($country_err)) { echo '<span class="float-right error">'. $country_err .'</span>'; } ?>
 			</div>
 
 			<div class="col-md-3 mb-3">
 				<label for="country">State</label>
 				
 				<input type="text" name="state" class="form-control" value="<?php if (isset($param_state)) { echo $param_state; } ?>" required="required">
-				<span class="float-right"><?php if (isset($state_err)) { echo $state_err; } ?></span>
+				<?php if (isset($state_err)) { echo '<span class="float-right error">'. $state_err .'</span>' ; } ?>
 			</div>
 
 			<div class="col-md-3 mb-3">
 				<label for="zipcode">Zip Code</label>
 				
 				<input type="text" name="zipcode" class="form-control" id="zipcode" placeholder="****" value="<?php if (isset($param_zipcode)) { echo $param_zipcode; } ?>" required="required">
-				<span class="float-right"><?php if (isset($zipcode_err)) { echo $zipcode_err; } ?></span>
+				<?php if (isset($zipcode_err)) { echo '<span class="float-right error"'. $zipcode_err .'</span>' ; } ?>
 			</div>
         </div>
 
         <div class="mb-5">
 			<label for="Local Government Area">Local Government Area (LGA)</label>
 			
-			<span class="float-right"><?php if (isset($lga_err)) { echo $lga_err; } ?></span>
+			<?php if (isset($lga_err)) { echo '<span class="float-right error">'. $lga_err .'</span>'; } ?>
 			<input type="text" name="lga" class="form-control" id="lga" placeholder="Jama'a Local Government" value="<?php if (isset($param_lga)) { echo $param_lga; } ?>" required="required">
 		</div>
 
@@ -476,7 +575,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 					<?php endif ?>
 					
 				</select>
-				<span class="float-right"><?php if (isset($acctType_err)) { echo $acctType_err; } ?></span>
+				<?php if (isset($acctType_err)) { echo '<span class="float-right error">'. $acctType_err .'</span>' ; } ?>
 			</div>
 
 			<div class="col-md-3 mb-3">
@@ -485,7 +584,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 				<div class="input-group">
 					<input type="text" name="username" class="form-control" id="username" placeholder="Username" value="<?php if (isset($param_username)) { echo $param_username; } ?>" required="required">
 				</div>
-				<span class="float-right"><?php if (!empty($username_err)) { echo $username_err; } ?></span>
+				<?php if (!empty($username_err)) { echo '<span class="float-right error">'. $username_err .'</span>'; } ?>
 			</div>
 
 			<div class="col-md-3">
@@ -499,7 +598,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 					<input type="password" name="password" class="form-control" id="password" placeholder="" value="<?php if (isset($param_password)) { echo $param_password; } ?>" required="required">
 				</div>
 				
-				<span class="float-right"><?php if (isset($password_err)) { echo $password_err; } ?></span>
+				<?php if (isset($password_err)) { echo '<span class="float-right error">'. $password_err .'</span>'; } ?>
 			</div>
 
 			<div class="col-md-3">
@@ -513,12 +612,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 					<input type="password" name="password1" class="form-control" id="password1" required="required">
 				</div>
 				
-				<span class="float-right"><?php if (isset($password1_err)) { echo $password1_err; } ?></span>
+				<?php if (isset($password1_err)) { echo '<span class="float-right error">'. $password1_err .'</span>'; } ?>
 			</div>
 
 			<div class="col-md-12 text-center">
-				<div style="width: 50%; margin: 10px auto; padding: 15px; height: 50px; border-radius: 10px; box-shadow: 0 1px 6px rgba(147, 147, 147, 0.7);">
-					<input type="file" name="pic" value="" />
+				<div style="width: 50%; margin: 10px auto; padding: 15px; height: auto; border-radius: 10px; box-shadow: 0 1px 6px rgba(147, 147, 147, 0.7);">
+					<?php if (isset($profilePic_err)) {
+						echo " 
+						<div class='error'>
+							<p>". $profilePic_err ."</p>
+						</div>
+						";
+					} ?>
+					<input type="file" name="upload" value="" />
 				</div>
 			</div>
 		</div>

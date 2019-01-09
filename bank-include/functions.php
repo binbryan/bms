@@ -2,11 +2,14 @@
 // Include our User class
 require_once 'classes/user.php';
 
-// Include our User class
+// Include our User class.
 require_once 'classes/customer.php';
 
-// Include our Transaction class
+// Include our Transaction class.
 require_once 'classes/transaction.php';
+
+// Include our Search class.
+require_once 'classes/search.php';
 
 /*
  * The function that inserts a Post into the database.
@@ -68,7 +71,7 @@ function getUser(): array{
  * 
  * @return bool Returns false true if user recored was inserted.
  */
-function addCustomer(string $username, string $password, string $email, string $firstname, string $middlename = null, string $lastname, int $acctNum = null, $acctType, string $phoneNo, string $dateOfBirth, string $address, string $gender, string $country, string $lga, string $state/*, string $passport*/): bool{
+function addCustomer(string $username, string $password, string $email, string $firstname, string $middlename = null, string $lastname, int $acctNum = null, $acctType, string $phoneNo, string $dateOfBirth, string $address, string $gender, string $country, string $lga, string $state, string $passport): bool{
 	/* Initialize a null ID */
 	$id = null;
 	$acctBal = null;
@@ -80,7 +83,7 @@ function addCustomer(string $username, string $password, string $email, string $
 	/*
 	 * Instantiate an object.
 	 */
-	$customer = new Customer($id, $username, $firstname, $middlename, $lastname, $acctType, $acctNum, $acctBal, $password, $email, $phoneNo, $dateOfBirth, $address, $gender, $lga, $country, $state/*, $passport*/);
+	$customer = new Customer($id, $username, $firstname, $middlename, $lastname, $acctType, $acctNum, $acctBal, $password, $email, $phoneNo, $dateOfBirth, $address, $gender, $lga, $country, $state, $passport);
 
 	// Insert user date into the database.
 	if ($customer->insert() == true) {
@@ -505,6 +508,12 @@ function getCustomerById($id = null){
 				<td>₦ ". number_format($customer[0]->acctBal) ."</td>
 				<td></td>
 			</tr>
+
+			<tr>
+				<td><strong>Created On:</strong></td>
+				<td>". getDateFormated($customer[0]->createdOn) ."</td>
+				<td></td>
+			</tr>
 		</tbody>
 
 	</table>
@@ -859,6 +868,111 @@ function keepRecord(int $userId, string $accName, int $accNum, float $amtTransfe
 	}
 
 	return false;
+}
+
+/*
+ * The function for checking file type.
+ * 
+ * @param string The File name.
+ * 
+ * @return bool Returns false || true if the transaction was successful.
+ */
+function checkFileType(string $fileName): bool{
+	// Store the target directory and target file.
+	$target_file = basename($fileName);
+
+	// Store the image types we want.
+	$validFileType = ['jpeg', 'jpg', 'png', 'gif'];
+
+	// Store file type.
+	$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+	// Check the file type.
+	if (in_array($fileType, $validFileType) === true) {
+		return true;
+	}
+
+	return false;
+}
+
+/*
+ * The Search function.
+ * 
+ * @param string The Key Word to search for.
+ * 
+ * @return array Returns searched data.
+ */
+function search(string $keyWord) {
+	// Instantiate an Object.
+	$search = new Search($keyWord);
+
+	if ($search->search() == true) {
+		$customer = $search->search();
+
+		if (isset($customer['0']['active']) && $customer['0']['active'] == 1) {
+			$customer['0']['active'] = 'Active';
+
+			$class = "class='active'";
+		} else {
+			$customer['0']['active'] = 'Inactive';
+
+			$class = "
+				style='color: brown;
+				font-weight: bold;
+			'";
+		}
+
+		// Count column.
+		$count = 0;
+		$count++;
+		for ($i = 0; $i < $count; $i++) { 
+			$Sr = $count;
+		}
+
+		// Display account details.
+		echo "
+		<div class='table-responsive' id='search'>
+			<table class='table table-striped'>
+				<thead>
+					<tr>
+						<th>Sr.</th>
+						<th>Name</th>
+						<th>Account No</th>
+						<th>Email</th>
+						<th>Phone No</th>
+						<th>Created On</th>
+						<th>Status</th>
+						<th>
+							<div class='float-right sm-width'>
+								<span class='toolkit'>Create a New Account</span>
+								<a href='add-customer.php' class='btn btn-cus' id='clear'><i class='fa fa-plus'></i></a>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td>". $Sr ."</td>
+						<td><a href='profile.php?id=". $customer[0]['id'] ."'>". $customer[0]['firstname'] .' '. $customer[0]['middlename'] .' '. $customer[0]['lastname'] ."</a></td>
+						<td>". $customer[0]['acctNum'] ."</td>
+						<td><a href='mailto:binemmanuel@mail.com'>". $customer[0]['email'] ."</a></td>
+						<td>". $customer[0]['phoneNo'] ."</td>
+						<td>". getDateFormated( $customer[0]['createdOn'] ) ."</td>
+						<td ". $class .">". $customer[0]['active'] ."</td>
+						<td>
+							<span>
+								<a href='?id=". $customer[0]['id'] ."&action=delete' class='btn danger delete-btn float-right'><i class='fa fa-trash'></i>&nbsp; Delete </a>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		";
+	} else {
+		
+	}
 }
 
 /*

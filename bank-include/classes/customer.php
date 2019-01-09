@@ -317,8 +317,10 @@ class Customer{
 				$rowState = $row['state'];
 				$rowPassport = $row['passport'];
 				$rowActive = $row['active'];
+				$rowResetToken = null;
+				$rowCreatedOn = $row['createdOn'];
 
-				$customersData = new Customer($rowId, $rowUsername, $rowFirstName, $rowMiddleName, $rowLastName, $rowAcctType, $rowAcctNum, $rowAcctBal, $password, $rowEmail, $rowPhoneNo, $rowDateOfBirth, $rowAddress, $rowGender, $rowLga, $rowCountry, $rowState, $rowPassport, $rowActive);
+				$customersData = new Customer($rowId, $rowUsername, $rowFirstName, $rowMiddleName, $rowLastName, $rowAcctType, $rowAcctNum, $rowAcctBal, $password, $rowEmail, $rowPhoneNo, $rowDateOfBirth, $rowAddress, $rowGender, $rowLga, $rowCountry, $rowState, $rowPassport, $rowActive, $rowResetToken, $rowCreatedOn);
 
 				// Bind array.
 				array_push($data, $customersData);
@@ -351,9 +353,9 @@ class Customer{
 		}
 
 		// Prepare & Bind param
-		$sql = $conn->prepare("INSERT INTO bank_customers(username, password, email, firstname, middlename, lastname, dateOfBirth, phoneNo, address, gender, lga, country, state, acctType, acctNum) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$sql = $conn->prepare("INSERT INTO bank_customers(username, password, email, firstname, middlename, lastname, dateOfBirth, phoneNo, address, gender, lga, country, state, passport, acctType, acctNum) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-		$result  = $sql->bind_param('ssssssssssssssi', $this->username, $this->password, $this->email, $this->firstname, $this->middlename, $this->lastname, $this->dateOfBirth, $this->phoneNo, $this->address, $this->gender, $this->lga, $this->country, $this->state, $this->acctType, $this->acctNum);
+		$result  = $sql->bind_param('sssssssssssssssi', $this->username, $this->password, $this->email, $this->firstname, $this->middlename, $this->lastname, $this->dateOfBirth, $this->phoneNo, $this->address, $this->gender, $this->lga, $this->country, $this->state, $this->passport, $this->acctType, $this->acctNum);
 
 		// Execute query.
 		$result = $sql->execute();
