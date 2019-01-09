@@ -902,77 +902,13 @@ function checkFileType(string $fileName): bool{
  * 
  * @return array Returns searched data.
  */
-function search(string $keyWord) {
+function search(string $keyWord, string $page) {
 	// Instantiate an Object.
-	$search = new Search($keyWord);
+	$search = new Search($keyWord, $page);
 
-	if ($search->search() == true) {
-		$customer = $search->search();
+	 echo $search->search();
+	
 
-		if (isset($customer['0']['active']) && $customer['0']['active'] == 1) {
-			$customer['0']['active'] = 'Active';
-
-			$class = "class='active'";
-		} else {
-			$customer['0']['active'] = 'Inactive';
-
-			$class = "
-				style='color: brown;
-				font-weight: bold;
-			'";
-		}
-
-		// Count column.
-		$count = 0;
-		$count++;
-		for ($i = 0; $i < $count; $i++) { 
-			$Sr = $count;
-		}
-
-		// Display account details.
-		echo "
-		<div class='table-responsive' id='search'>
-			<table class='table table-striped'>
-				<thead>
-					<tr>
-						<th>Sr.</th>
-						<th>Name</th>
-						<th>Account No</th>
-						<th>Email</th>
-						<th>Phone No</th>
-						<th>Created On</th>
-						<th>Status</th>
-						<th>
-							<div class='float-right sm-width'>
-								<span class='toolkit'>Create a New Account</span>
-								<a href='add-customer.php' class='btn btn-cus' id='clear'><i class='fa fa-plus'></i></a>
-							</div>
-						</th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<tr>
-						<td>". $Sr ."</td>
-						<td><a href='profile.php?id=". $customer[0]['id'] ."'>". $customer[0]['firstname'] .' '. $customer[0]['middlename'] .' '. $customer[0]['lastname'] ."</a></td>
-						<td>". $customer[0]['acctNum'] ."</td>
-						<td><a href='mailto:binemmanuel@mail.com'>". $customer[0]['email'] ."</a></td>
-						<td>". $customer[0]['phoneNo'] ."</td>
-						<td>". getDateFormated( $customer[0]['createdOn'] ) ."</td>
-						<td ". $class .">". $customer[0]['active'] ."</td>
-						<td>
-							<span>
-								<a href='?id=". $customer[0]['id'] ."&action=delete' class='btn danger delete-btn float-right'><i class='fa fa-trash'></i>&nbsp; Delete </a>
-							</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		";
-	} else {
-		
-	}
 }
 
 /*

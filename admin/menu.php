@@ -48,9 +48,11 @@
         </div>
 
         <div class="dropdown">
-            <div class="dropdown-label ">
-                <i class="fa fa-bars"></i>&nbsp; Reports
-            </div>
+            <a href="reports.php">
+                <div class="dropdown-label ">
+                    <i class="fa fa-bars"></i>&nbsp; Reports
+                </div>
+            </a>
         </div>
 
         <div class="dropdown">

@@ -45,29 +45,31 @@ require_once '..\bank-include\functions.php';
         <!-- bootstrap v3.3.7 css -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <!-- animate css -->
-        <link rel="stylesheet" href="assets/css/animate.css">
+        <!-- <link rel="stylesheet" href="assets/css/animate.css"> -->
+        
         <!-- owl.carousel.2.0.0-beta.2.4 css -->
         <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-        <!-- swiper.min.css -->
-        <link rel="stylesheet" href="assets/css/swiper.min.css">
+        
+        <!-- Top Slider CSS -->
+        <link href="css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
+
         <!-- font-awesome v4.6.3 css -->
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        
         <!-- flaticon.css -->
         <link rel="stylesheet" href="assets/css/flaticon.css">
-        <!-- magnific-popup.css -->
-        <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <!-- metisMenu.min.css -->
-        <link rel="stylesheet" href="assets/css/metisMenu.min.css">
+        
         <!-- style css -->
         <link rel="stylesheet" href="assets/css/styles.css">
         <!-- responsive css -->
         <link rel="stylesheet" href="assets/css/responsive.css">
-        <!-- modernizr css -->
-        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        
         <!-- jquery.min -->
         <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+        
         <!-- custom jquery-->
         <script src="assets/js/custom.js"></script>
+
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -86,7 +88,8 @@ require_once '..\bank-include\functions.php';
                                 $("ducument").ready(function () {
                                     event.preventDefault();
 
-                                    var page = $("#page").val();
+                                    var action = $("#action").val();
+                                    var page = $("#pageTitle").val();
                                     var search = $("#search").val();
 
                                     //document.getElementById("result").innerHTML = search;
@@ -97,7 +100,7 @@ require_once '..\bank-include\functions.php';
                                         url: 'search.php',
                                         
                                         data: {
-                                            action: 'search',
+                                            action: action,
                                             page: page,
                                             search: search
                                         },
@@ -111,10 +114,12 @@ require_once '..\bank-include\functions.php';
                             }
                         </script>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET" style="display: inline-block;">
-                        <input type="hidden" name="action" value="search" />
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" />
+                        <input type="hidden" name="action" id="action" value="search" />
+                        <input type="hidden" name="page" id="pageTitle" value="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" />
 
-                        <input type="text" id="search" onkeyup="validate()" placeholder="<?php if (isset($keyWord)) { echo $keyWord; } else { echo "Search"; } ?>" />
+                        <input type="text" id="search" onkeyup="validate()" placeholder="<?php if (isset($keyWord)) { echo $keyWord; } else { echo "Search"; } ?>" autocomplete="disable" />
+
+                        
                     </form>
                 </span>
 
@@ -147,5 +152,47 @@ require_once '..\bank-include\functions.php';
                     </div> <!-- .header-info --> ";
                 }
                 ?>
-                <div class="container">
+                <div class="container">                   
+
+                    <div class="slider-area">
+                        <div class="slider-active owl-carousel">
+                            <div class="slider-items">
+                                <img src="assets/images/slider/1.jpg" alt="" class="slider">
+
+                                <div class="slider-content flex-style">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xl-8 col-lg-10 col-12">
+                                                <h2>Welcome</h2>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                            </div>                      
+                                        </div>
+                                    </div>              
+                                </div>
+                            </div>  
+
+                            <div class="slider-items">
+                                <img src="assets/images/slider/1.jpg" alt="" class="slider">
+                                <div class="slider-content flex-style">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="offset-lg-4 col-lg-8 text-right col-12">
+                                                <h2>We Are <span>Everyone’s</span> Coinbuzz Agency</h2>
+                                                <p>There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form randomised words which don't look even slightly believable.</p>
+                                                <ul>
+                                                    <li><a href="#">Read more</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- slider-area end -->
+
                     <div class="row">

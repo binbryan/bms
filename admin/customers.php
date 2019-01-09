@@ -52,54 +52,56 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 
 ?>
 
-<div class="text-center col-md-12 mb-4 heading">
-	<h2>Customers</h2>
-</div>
+<div class="col-md-12" id="result">
+	<div class="text-center col-md-12 mb-4 heading">
+		<h2>Customers</h2>
+	</div>
 
-<div class="container">
-	<div class="table-responsive" id="result">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Sr.</th>
-					<th>Name</th>
-					<th>Account No</th>
-					<th>Email</th>
-					<th>Phone No</th>
-					<th>Created On</th>
-					<th>Status</th>
-					<th>
-						<div class="float-right sm-width">
-							<span class="toolkit">Create a New Account</span>
-							<a href="add-customer.php" class="btn btn-cus" id="clear"><i class="fa fa-plus"></i></a>
-						</div>
-					</th>
-				</tr>
-			</thead>
-			
-			<tbody>
+	<div class="container">
+		<div class="table-responsive" >
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Sr.</th>
+						<th>Name</th>
+						<th>Account No</th>
+						<th>Email</th>
+						<th>Phone No</th>
+						<th>Created On</th>
+						<th>Status</th>
+						<th>
+							<div class="float-right sm-width">
+								<span class="toolkit">Create a New Account</span>
+								<a href="add-customer.php" class="btn btn-cus" id="clear"><i class="fa fa-plus"></i></a>
+							</div>
+						</th>
+					</tr>
+				</thead>
 				
-				<?php 
-				##################################
-				// Get a list of our customers
-					getCustomer();
-				##################################
-				?>
-				
-			</tbody>
-		</table>
+				<tbody>
+					
+					<?php 
+					##################################
+					// Get a list of our customers
+						getCustomer();
+					##################################
+					?>
+					
+				</tbody>
+			</table>
 
-		<nav aria-label="page navigation" class="pagination-sm float-right">
-			<ul class="pagination">
-				<li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span class="" aria-hidden="true">Prev</span></a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">4</a></li>
-				<li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">Next</span></a></li>
-			</ul>
-		</nav>
+			<nav aria-label="page navigation" class="pagination-sm float-right">
+				<ul class="pagination">
+					<li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span class="" aria-hidden="true">Prev</span></a></li>
+					<li class="page-item active"><a class="page-link" href="#">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li class="page-item"><a class="page-link" href="#">4</a></li>
+					<li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">Next</span></a></li>
+				</ul>
+			</nav>
 
+		</div>
 	</div>
 </div>
 

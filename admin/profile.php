@@ -685,17 +685,19 @@ if (isset($_GET['delete']) && $_GET['delete'] === "no") {
 ####################################
 ?>
 
-<div class="text-center col-md-12 mb-4 heading">
-	<h2>Customer's Profile</h2>
-</div>
+<div class="col-md-12" id="result">
+	<div class="text-center col-md-12 mb-4 heading">
+		<h2>Customer's Profile</h2>
+	</div>
 
-<div class="container">
-	<div class="table-responsive">
-		<?php
-			if (!empty($id)) {
-				getCustomerById($id);
-			}
-		?>		
+	<div class="container">
+		<div class="table-responsive" >
+			<?php
+				if (!empty($id)) {
+					getCustomerById($id);
+				}
+			?>		
+		</div>
 	</div>
 </div>
 
