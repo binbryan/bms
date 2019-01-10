@@ -2,10 +2,13 @@
 /**
  * The customer template file.
  *
+ * Author: Bin Emmanuel
+ *
  * @link http://developers.zerabtech.com/bank-management-system
  *
  * @version 1.0
  */
+
 // Page title.
 $pageTitle = 'Customers';
 

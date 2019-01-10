@@ -302,6 +302,10 @@ form{
 	margin-top: 150px; 
 }
 
+#profile-wrap-table #left-spacing{
+	margin: 30px; 
+}
+
 .delete-modal-body,
 .edit-modal-body,
 .success-modal-body,

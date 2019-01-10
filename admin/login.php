@@ -1,10 +1,19 @@
 <?php
 // Include process-login.php
 require_once 'process-login.php';
+
+if (isset($_SESSION['loggedIn'])) {
+    header("LOCATION: index.php");
+    exit;
+}
+
+if (isset($_SESSION)) {
+	var_dump($_SESSION);
+}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html id="message">
 	<head>
 		<title>Login | Bank Management System</title>
 		<meta charset="utf-8">
@@ -60,6 +69,8 @@ require_once 'process-login.php';
 						
 						success: function (response) {
 							document.getElementById("message").innerHTML=response;
+
+							$('#hide').hide();
 						}
 					});
 				});
@@ -71,14 +82,12 @@ require_once 'process-login.php';
 	
 
 	<body class="text-center">
-		
-
-		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" class="form-signin">
+			
+		<form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" class="form-signin" id="hide">
 			<i class="fa fa-user large" onclick="test()"></i>
 			<br/>
 			<br/>
 
-			<p id="message"></p>
 
 			<label for="" class="sr-only">Username</label>
 

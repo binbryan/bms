@@ -259,7 +259,6 @@ class Transaction{
 	 */
 	public function getReceiversBalance(): float{
 		// Include connection file.
-		/*require_once '..\config.php';*/
 		//Store credentials in variables.
 		$servername = 'localhost';
 		$username = 'root';
@@ -298,8 +297,59 @@ class Transaction{
 	}
 
 
-	/*public function getTransactionDetails(): array {
+	public static function getTransactions(): array {
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn->connect_error) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		$sql = $conn->prepare("SELECT id, transactionId, accName, accNum, amount, recBank, recAccName, recAccNum, transactionDate FROM bank_transaction LIMIT ?");
+
+		$limit = 50;
+
+		// Bind parameters.
+		$sql->bind_param('i', $limit);
+
+		// Execute query.
+		$result = $sql->execute();
+
 		$data = [];
+
+		// Bind result value
+		$sql->bind_result($data['id'], $data['transactionId'], $data['accName'], $data['accNum'], $data['amount'], $data['recBank'], $data['recAccName'], $data['recAccNum'], $data['transactionDate']);
+
+
+		while ($sql->fetch() == true) {
+			$transactions = [];
+
+			array_push($transactions, $data);
+			
+			foreach ($transactions as $transaction) {
+				return $transaction;
+			}
+		}
+
+		// Close statement.
+		$sql->close();
+		
+		// Close connection.
+		$conn->close();
+		
+		/*return false;*/
+
+
+		/*
+		$data = [];
+		$transaction = [];
 
 		$transaction['id'] = $this->id;
 		$transaction['userId'] = $this->userId;
@@ -312,6 +362,10 @@ class Transaction{
 
 		array_push($data, $transaction);
 
-		return $data;
-	}*/
+		return $data;*/
+	}
 }
+
+$transaction = Transaction::getTransactions();
+
+var_dump($transaction);

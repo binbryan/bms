@@ -19,73 +19,75 @@ require 'header.php';
 </div>
 
 <div class="container">
-	<div class="table-responsive">
-		<table class="table table-striped table-sm">
-			<thead>
-				<tr>
-					<th>Sr.</th>
-					<th>Name</th>
-					<th>Account No</th>
-					<th>Email</th>
-					<th>Phone No</th>
-					<th>Date</th>
-					<th>Status</th>
-					<th>
-						<div class="float-right sm-width">
-							<span class="toolkit">Create a New Account</span>
-							<a href="add-customer.php" class="btn btn-cus" id="clear"><i class="fa fa-plus"></i></a>
+	<div class="col-md-12 mb-4">
+		<div class="container profile-area">
+			<?php
+				$users = getUser();
+
+				foreach ($users as $user) {
+					echo "
+						<div class='row'>
+							<div class='profile-wrap col-md-12'>
+								<i class='fa fa-pencil fa-lg float-right'></i>
+
+								<div class='col-md-3 float-left'>
+									<img src='". $user['profilePic'] ."' style='box-shadow: 0px 2px 10px rgba(,0,0,.1); border-radius: 100%; height: 223px; width: 100%;'>
+								</div>
+
+								<div class='col-md-9 float-right'>
+									<div class='table-responsive' >
+										<p>
+											<table class='mb-2'>
+												<tbody class='table'>
+													<tr id='profile-wrap-table'>
+														<td><strong>Name:</strong></td>
+														<td id='left-spacing'>". $user['firstname'] .' '. $user['middlename'] .' '. $user['lastname'] ."</td>
+														<td></td>
+														<td></td>
+														
+														<td><strong>Username:</strong></td>										
+														<td id='left-spacing'>". $user['username'] ."</td>
+													</tr>
+
+													<tr>
+														<td><strong>Email:</strong></td>
+														<td>". $user['email'] ."</td>									
+														<td></td>
+														<td></td>
+																									
+														<td><strong>Country:</strong></td>
+														<td>Nigeria</td>
+													</tr>
+
+													<tr>
+														<td><strong>User Role:</strong></td>
+														<td>". $user['userRole'] ."</td>
+														<td></td>
+														<td></td>
+
+														<td><strong>Created On:</strong></td>
+														<td>". getDateFormated($user['createdOn']) ."</td>
+													</tr>
+												</tbody>
+											</table>
+										</p>
+									</div>
+										
+									<h3>Bio</h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+										quis nostrud exercitation ullamco laboris.
+									</p>
+								</div>
+							</div>
 						</div>
-					</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td><a href="customer.php">Bin Emmanuel</a></td>
-					<td>08923956362346</td>
-					<td><a href="mailto:binemmanuel@mail.com">mailto:binemmanuel@mail.com</a></td>
-					<td>0832682360</td>
-					<td>0832682360</td>
-					<td class="active">Active</td>
-					<td><button class="btn danger float-right"><i class='fa fa-trash'></i>&nbsp; Delete </button></td>
-				</tr>
+					";
 
-				<tr>
-					<td>2</td>
-					<td>Bin Emmanuel</td>
-					<td>08923956362346</td>
-					<td>binemmanuel@mail.com</td>
-					<td>0832682360</td>
-					<td>0832682360</td>
-					<td class="active">Active</td>
-					<td><button class="btn danger float-right"><i class='fa fa-trash'></i>&nbsp; Delete </button></td>
-				</tr>
 
-				<tr>
-					<td>3</td>
-					<td>Bin Emmanuel</td>
-					<td>08923956362346</td>
-					<td>binemmanuel@mail.com</td>
-					<td>0832682360</td>
-					<td>0832682360</td>
-					<td class="active">Active</td>
-					<td><button class="btn danger float-right"><i class='fa fa-trash'></i>&nbsp; Delete </button></td>
-				</tr>
-			</tbody>
-		</table>
-
-		<nav aria-label="page navigation" class="pagination-sm float-right">
-			<ul class="pagination">
-				<li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span class="" aria-hidden="true">Prev</span></a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">4</a></li>
-				<li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">Next</span></a></li>
-			</ul>
-		</nav>
-
+				}
+			?>
+		</div>
 	</div>
 </div>
 

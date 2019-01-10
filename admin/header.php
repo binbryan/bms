@@ -4,6 +4,10 @@
  *
  * This is the template that displays all of the <head> section and everything up until <div class="row">
  *
+ * The customer template file.
+ *
+ * Author: Bin Emmanuel
+ *
  * @link http://developers.zerabtech.com/bank-management-system
  *
  * @version 1.0
@@ -152,47 +156,5 @@ require_once '..\bank-include\functions.php';
                     </div> <!-- .header-info --> ";
                 }
                 ?>
-                <div class="container">                   
-
-                    <div class="slider-area">
-                        <div class="slider-active owl-carousel">
-                            <div class="slider-items">
-                                <img src="assets/images/slider/1.jpg" alt="" class="slider">
-
-                                <div class="slider-content flex-style">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-xl-8 col-lg-10 col-12">
-                                                <h2>Welcome</h2>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            </div>                      
-                                        </div>
-                                    </div>              
-                                </div>
-                            </div>  
-
-                            <div class="slider-items">
-                                <img src="assets/images/slider/1.jpg" alt="" class="slider">
-                                <div class="slider-content flex-style">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="offset-lg-4 col-lg-8 text-right col-12">
-                                                <h2>We Are <span>Everyone’s</span> Coinbuzz Agency</h2>
-                                                <p>There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form randomised words which don't look even slightly believable.</p>
-                                                <ul>
-                                                    <li><a href="#">Read more</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- slider-area end -->
-
+                <div class="container">
                     <div class="row">

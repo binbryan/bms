@@ -523,50 +523,58 @@ a#scrollUp:hover {
 }
 /*--------about-area end--------*/
 
-/*--------service-area start--------*/
-.service-area{
-    padding: 130px 0px 100px;
+/*--------profile-area start--------*/
+.profile-area{
+    padding: 50px 0px 100px;
 }
-.section-title{
+.profile-title{
     margin-bottom: 50px;
 }
-.section-title h2{
+.profile-title h2{
     font-size: 40px;
     font-weight: 600;
     line-height: 30px;
     margin-bottom: 25px;
 }
-.service-wrap{
+.profile-wrap{
     background: #fff;
     box-shadow: 0px 2px 10px rgba(0,0,0,.1);
-    padding: 70px 25px;
+    padding: 30px 25px;
     margin-bottom: 30px;
 }
-.service-wrap h3{
+.profile-wrap h3{
+    display: inline-block;
     font-size: 24px;
     margin-bottom: 15px;
 }
-.service-wrap p{
+
+.profile-wrap h4{
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile-wrap p{
     margin-bottom: 15px;
     text-align: justify;
 }
-.service-wrap a{
+.profile-wrap a{
     display: inline-block;
     color: #ff7700;
     font-size: 18px;
     margin-top: 10px;
 }
-.service-items {
+.profile-items {
     background: #fff;
     box-shadow: 0px 2px 10px rgba(0,0,0,.1);
     padding: 30px 20px 35px 80px;
     margin-bottom: 30px;
     position: relative;
 }
-.service-items:hover{
+.profile-items:hover{
     box-shadow: 0px 3px 20px rgba(0,0,0,.1);
 }
-.service-items:before{
+.profile-items:before{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -575,23 +583,23 @@ a#scrollUp:hover {
     height: 3px;
     content: "";
 }
-.service-items:hover:before{
+.profile-items:hover:before{
     width: 100%;
 }
-.service-items h3{
+.profile-items h3{
     font-size: 24px;
     margin-bottom: 15px;
 }
-.service-items span{
+.profile-items span{
     position: absolute;
     left: 20px;
     top: 35px;
 }
-.service-items span:before{
+.profile-items span:before{
     font-size: 40px;
     color: #ff7700;
 }
-/*--------service-area end--------*/
+/*--------profile-area end--------*/
 
 /*--------about-area start--------*/
 .about-area{
@@ -1535,22 +1543,22 @@ ul.menu.active {
 .featured-area3 .featured-wrap.active h2 a{
     color: #fff;
 }
-.service-area2 .service-items{
+.profile-area2 .profile-items{
     padding: 35px 25px;
     z-index: 9;
 }
-.service-area2 .service-items img{
+.profile-area2 .profile-items img{
     margin-bottom: 25px;
 }
-.service-area2 .service-items:before{
+.profile-area2 .profile-items:before{
     width: 100%;
     height: 100%;
-    background: url(../images/service/icon/7.png) no-repeat center center / cover;
+    background: url(../images/profile/icon/7.png) no-repeat center center / cover;
     z-index: -9;
     opacity: 0;
 }
-.service-area2 .service-items.active:before,
-.service-area2 .service-items:hover:before{
+.profile-area2 .profile-items.active:before,
+.profile-area2 .profile-items:hover:before{
     opacity: 1;
 }
 
@@ -1803,58 +1811,58 @@ ul.menu.active {
     background: #f5f5f5;
 }
 
-.service-page-area{
+.profile-page-area{
     padding: 120px 0px 90px;
 }
-.service-wrappper {
+.profile-wrappper {
     margin-bottom: 30px;
     background: #fff;
     box-shadow: 0px 1px 5px rgba(0,0,0,.1); 
 }
-.service-wrappper:hover{
+.profile-wrappper:hover{
     box-shadow: 0px 1px 25px rgba(0,0,0,.1); 
 }
-.service-contents{
+.profile-contents{
     padding: 25px 30px;
 }
-.service-contents h3{
+.profile-contents h3{
     font-weight: 500;
     font-size: 24px;
     margin-bottom: 15px;
 }
-.service-contents p{
+.profile-contents p{
     font-family: roboto;
 }
-.service-details {
+.profile-details {
     background: #fff;
     padding: 25px;
     box-shadow: 0px 0px 20px rgba(0,0,0,.1);
     margin-bottom: 30px;    
 }
-.service-details h3{
+.profile-details h3{
     font-size: 24px;
     font-weight: 500;
     margin-bottom: 15px;
 }
-.service-details p{
+.profile-details p{
     margin-bottom: 20px;
 }
-.service-details ul li{
+.profile-details ul li{
     padding-left: 40px;
     position: relative;
     font-size: 18px;
     font-style: italic;
     margin-bottom: 15px;
 }
-.service-details ul li i{
+.profile-details ul li i{
     font-size: 24px;
     color: #ff7700;
     position: absolute;
     left: 0;
     top:0;
 }
-.service-details-img{
-    background: url(../images/service/1.jpg)no-repeat center center / cover;
+.profile-details-img{
+    background: url(../images/profile/1.jpg)no-repeat center center / cover;
     height: 100%;
 }
 
@@ -2028,7 +2036,7 @@ ul.menu.active {
     background: #ff7700;
     color: #fff;
 }
-.service-wrappper img{
+.profile-wrappper img{
     width: 100%;
 }
 /*--------sidebar-area end--------*/

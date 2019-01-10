@@ -47,10 +47,6 @@ function addUser(string $username, string $password, string $email, string $user
 	return false;
 }
 
-function getUser(): array{
-	# code...
-}
-
 /*
  * The function that inserts a Post into the database.
  *
@@ -312,6 +308,35 @@ function getCustomer(int $numCustomers = null) {
 
 } // End of function.
 
+/*
+ * The function that deletes a customer's account.
+ *
+ * @param int Customer's ID.
+ * 
+ * @return bool Returns false || true if the customer's email ID already exits.
+ */
+function getUser(int $numCustomers = null) {
+	// Get a large number of customers if $numCustomers is not specified.
+	if (is_null($numCustomers)) {
+		$numCustomers = 2000000;
+	}
+
+	// Initialize an empty array.
+	$data = [];
+
+	/*
+	 * Instantiate an object.
+	 */
+	if (User::getUsers(2000000) == true) {
+		array_push($data, User::getUsers(2000000));
+
+		foreach ($data as $user) {
+			return $user;
+		}
+	}
+
+	return false;
+}
 
 /*
  * The function that formats date to d, m year.

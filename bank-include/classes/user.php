@@ -360,4 +360,64 @@ class User{
 
 		return false;
 	}	
+
+	/*
+	 * Get the list of User objects in the database.
+	 * 
+	 * @Option param int Numbers of rows to be retrieved (default = 2000000).
+	 * @param string Retrieve User's objects ordered by First Name in descending order.
+	 */
+	public static function getUsers(int $numRows = null, string $order = 'firstname') {
+		/*
+		 * Create a connection to the database.
+		 */
+		//Store credentials in variables.
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'FASTlogin89';
+		$dbname = 'bank_';
+
+		//Establish a connection to the database server.
+		$conn = new mysqli($servername, $username, $password, $dbname);
+
+		// Check connection
+		if ($conn === false) {
+			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
+		}
+
+		$sql = "SELECT id, username, email, firstname, middlename, lastname, bio, userRole, profilePic, createdOn FROM bank_users ORDER BY $order ASC LIMIT $numRows";
+
+		$result = $conn->query($sql);
+
+		// Initialize an empty array.
+		$data = [];
+
+		if ($result == true && $result->num_rows > 0) {
+			// Loop through the data.
+			while ($row = $result->fetch_assoc()) {
+				// Store the retrieved rows.
+				$rowId = $row['id'];
+				$rowUsername = $row['username'];
+				$rowEmail  = $row['email'];
+				$rowFirstName = $row['firstname'];
+				$rowMiddleName = $row['middlename'];
+				$rowLastName = $row['lastname'];
+				$rowBio = $row['bio'];
+				$rowUserRole = $row['userRole'];
+				$rowProfilePic = $row['profilePic'];
+				$rowCreatedOn = $row['createdOn'];
+
+				/*$usersData = new User($rowId, $rowUsername, $password = null, $rowEmail, $rowUserRole, $token = null, $rowFirstName, $rowMiddleName, $rowLastName, $rowBio, $active = null, $resetToken = null, $rowCreatedOn, $rowProfilePic);*/
+
+				// Bind array.
+				array_push($data, $row);
+
+			}
+
+		} else {
+			return false;
+		}
+
+		return $data;
+	}
 } // End of file.
