@@ -329,11 +329,12 @@ function getCustomer(string $orderBy, int $offset, int $numCustomers = null) {
 } // End of function.
 
 /*
- * The function that deletes a customer's account.
+ * The function fetches a list of user's from the db by ID
  *
- * @param int Customer's ID.
+ * @param int Number of customer's to fetch.
+ * @param string sorting.
  * 
- * @return bool Returns false || true if the customer's email ID already exits.
+ * @return bool Returns false || true user's data was fetched successfully.
  */
 
 function getUser(int $numCustomers = null, string $order = null): array {
@@ -358,7 +359,7 @@ function getUser(int $numCustomers = null, string $order = null): array {
 				}
 			}
 			break;
-		
+
 		case '/bank/admin/reports.php':
 			/*
 			 * Instantiate an object.
@@ -379,6 +380,14 @@ function getUser(int $numCustomers = null, string $order = null): array {
 
 	return false;
 }
+
+/*
+ * The function fetches a list of user's from the db by ID
+ *
+ * @param int Customer's ID.
+ * 
+ * @return bool Returns false || true if the customer's email ID already exits.
+ */
 
 /*
  * The function that formats date to d, m year.

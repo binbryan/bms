@@ -12,6 +12,11 @@ $pageTitle = 'Profile';
 // Include our header.php file
 require 'header.php';
 
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+	// Store the user's ID.
+	$id = htmlspecialchars(stripcslashes(trim($_GET['id'])));
+}
+
 ?>
 
 <div class="text-center col-md-12 mb-4 heading">

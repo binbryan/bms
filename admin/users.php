@@ -6,6 +6,7 @@
  *
  * @version 1.0
  */
+
 // Page title.
 $pageTitle = 'Admin Users';
 
@@ -22,11 +23,16 @@ require 'header.php';
 	<div class="col-md-12 mb-4">
 		<div class="container profile-area">
 			<?php
-				$users = getUser(10, 'firstname');
+				#########################################
+					// Get a list of users.
+					// Order by firstname.
+					$users = getUser(5, 'firstname');
+				#########################################
+
 
 				foreach ($users as $user) {
 					if (empty($user['profilePic'])) {
-						$user['profilePic'] = "http://localhost:8080/bank/admin/uploads/image/temp.png";
+						$user['profilePic'] = "http://localhost:8080/bank/admin/uploads/image/temp.jpg";
 					}
 					echo "
 						<div class='row'>
@@ -34,7 +40,7 @@ require 'header.php';
 								<i class='fa fa-pencil fa-lg float-right'></i>
 
 								<div class='col-md-3 float-left'>
-									<a href=''>
+									<a href='user.php?id=". $user['id'] ."'>
 										<img src='". $user['profilePic'] ."' style='box-shadow: 0px 2px 10px rgba(,0,0,.1); border: 2px solid gray; border-radius: 100%; height: 208px; width: 100%;' class='mb-4'>
 
 										<p class='text-center'><strong>". $user['firstname'] .' '. $user['middlename'] .' '. $user['lastname'] ."</strong></p>
@@ -49,7 +55,11 @@ require 'header.php';
 												<tbody class='table'>
 													<tr id='profile-wrap-table'>
 														<td><strong>Name:</strong></td>
-														<td id='left-spacing'>". $user['firstname'] .' '. $user['middlename'] .' '. $user['lastname'] ."</td>
+														<td id='left-spacing'>
+															<a href='user.php?id=". $user['id'] ."'>".
+																$user['firstname'] .' '. $user['middlename'] .' '. $user['lastname'] ."
+															</a>
+														</td>
 														<td></td>
 														<td></td>
 														

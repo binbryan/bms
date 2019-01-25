@@ -8,7 +8,9 @@
             <div class="content-area">
                 <div class="container">
                     <div class="row">
-                        <span class="site-info">&copy; <?php echo date('Y'); ?> <a href="#">Bank Management System</a> - All Right Reserve</span>
+                        <div class="container text-center">
+                            <span class="site-info">&copy; <?php echo date('Y'); ?> <a href="#">Bank Management System</a> - All Right Reserve</span>
+                        </div>
                     </div> <!-- .row -->
                 </div> <!-- .container -->
             </div> <!-- .content-area -->
