@@ -12,13 +12,6 @@ $pageTitle = 'Transfer';
 // Include our header.php file
 require 'header.php';
 
-/*
- * Include account-balance.php
- * 
- * account-balance is the file that get's the customer's account balance form our db.
- */
-require 'account-balance.php';
-
 /**
  * Process form data.
  */
@@ -146,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			}
 		} else {
 			// Store an error message.
-				$error_message = "Sorry, you are not eligible to make this transfer due to insufficient fund. <br> You need to have more than ₦". number_format($amtToTransfer) ." to make a transfer. ";
+				$error_message = "Sorry, you are not eligible to make this transfer due to insufficient fund. <br> You need to have more than ₦". number_format(1000) ." to make a transfer. ";
 		}		
 	}
 }
@@ -179,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
 		<div class="row">
 			<div class="col-md-6 mb-3" style="box-shadow: 0 0 11px 4px #fff, 0 0 0 0.2rem #CFCFCF; border-radius: 5px;">
-				<small class="float-right" id="accBal">Account Balance: ₦0</small>
+				<small class="float-right" id="accBal"></small>
 
 				<h3 class="mb-3">From</h3>
 				

@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * Include account-balance.php
+ * 
+ * This is the file that get's the customer's account balance form our db.
+ * 
+ * @link http://developers.zerabtech.com/bank-management-system
+ *
+ * @version 1.0
+ */
+
 // Include connection file.
 require_once '..\bank-include\config.php';
 
