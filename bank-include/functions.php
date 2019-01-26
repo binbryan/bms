@@ -628,8 +628,7 @@ function getCustomerById($id = null){
  */
 function displayPageNum(int $page, int $totalPages){
 	for ($page = 1; $page <= $totalPages; $page++) { 
-
-		echo "<li class='page-item '><a class='page-link' href='"."?page=". $page ."'>". $page ."</a></li>";
+		echo "<li class='page-item'><a class='page-link' href='"."?page=". $page ."'>". $page ."</a></li>";
 
 	}
 }
@@ -867,8 +866,6 @@ function verifyPass(string $username, string $password): bool{
  * 
  * @return bool Returns false || true if the transaction was successful.
  */
-//makeTransfer('Bin Danjuma Emmanuel', 558444985, 90, 'BMS',  'Jane Doe', 896584729);
-
 function makeTransfer(string $accName, int $accNum, float $amount, string $recBank, string $recAccName, int $recAccNum){
 	// Set transaction ID to Null
 	$id = null;
@@ -884,37 +881,36 @@ function makeTransfer(string $accName, int $accNum, float $amount, string $recBa
 
 		// Deduct from sender's account balance.
 		if ($balance >= 0 && $balance >= $amount) {
-			$balance -= $amount;
-		
-			// Instantiate an Object.
-			$newBal = new Transaction($id, $userId, $accName, $accNum, $balance, $recBank, $recAccName, $recAccNum);
-			
-			// Update sender's account balance.
-			if ($newBal->updateBalance() == true) {
-				
-				############################
-				#	Transfer to Receiver   #
-				############################
+			if ($balance -= $amount) {
 				// Instantiate an Object.
-				$recBal = new Transaction($id, $userId, $accName, $accNum, $amount, $recBank, $recAccName, $recAccNum);
+				$newBal = new Transaction($id, $userId, $accName, $accNum, $balance, $recBank, $recAccName, $recAccNum);
 
-				// Get the receiver's current account balance.
-				if ($recBal->getReceiversBalance() == true) {
-					// Store the receiver's account balance.
-					$receiversBalance = $recBal->getReceiversBalance();
-
-					// Add to receiver's account balance.
-					$receiversBalance += $amount;
-					
+				// Update sender's account balance.
+				if ($newBal->updateBalance() == true) {
+					############################
+					#	Transfer to Receiver   #
+					############################
 					// Instantiate an Object.
-					$transfer = new Transaction($id, $userId, $accName, $accNum, $receiversBalance, $recBank, $recAccName, $recAccNum);
+					$recBal = new Transaction($id, $userId, $accName, $accNum, $amount, $recBank, $recAccName, $recAccNum);
 
-					// Update Receiver's account balance.					
-					if ($transfer->tranferFund() == true) {
-						return true;
+					// Get the receiver's current account balance.
+					if ($recBal->getReceiversBalance() == true || $recBal->getReceiversBalance() == 0) {
+						// Store the receiver's account balance.
+						$receiversBalance = $recBal->getReceiversBalance();
+
+						// Add to receiver's account balance.
+						$receiversBalance += $amount;
+					
+						// Instantiate an Object.
+						$transfer = new Transaction($id, $userId, $accName, $accNum, $receiversBalance, $recBank, $recAccName, $recAccNum);
+
+						// Update Receiver's account balance.					
+						if ($transfer->tranferFund() == true) {
+							return true;
+						}
 					}
 				}
-			}
+			}			
 		}	
 	}
 
@@ -934,7 +930,6 @@ function makeTransfer(string $accName, int $accNum, float $amount, string $recBa
  * 
  * @return bool Returns false || true if the transaction was successful.
  */
-
 function checkEligibility(int $accNum): bool{
 	$id = null;
 	$userId = null;
@@ -947,6 +942,7 @@ function checkEligibility(int $accNum): bool{
 	// Instantiate an Object.
 	$checkBal = new Transaction($id, $userId, $accName, $accNum, $amtToTransfer, $recBank, $recAccName, $recAccNum);
 	
+	// Check the sender's balance.
 	if ($checkBal->getSendersBalance() <= 1000) {
 		return false;
 	}
@@ -969,15 +965,16 @@ function checkEligibility(int $accNum): bool{
  */
 function keepRecord(int $userId, string $accName, int $accNum, float $amtTransfered, string $recBank, string $recAccName, int $recAccNum): bool{
 	$id = null;
+
 	// Instantiate an Object.
 	$transaction = new Transaction($id, $userId, $accName, $accNum, $amtTransfered, $recBank, $recAccName, $recAccNum);
 
 	// Check if record was successfully made.
-	if ($transaction->recordTransaction()) {
+	if ($transaction->recordTransaction() == true) {
 		return true;
 	}
-
-	return false;
+	
+	return false; 
 }
 
 /*

@@ -24,39 +24,71 @@ require 'header.php';
     <div class='col-lg-12 col-sm-12 col-12'>
         <!-- .active-users -->
         <div class='active-users col-md-12'>
-            <span style='border-bottom: 1px solid gray;'>Active Now</span>
+            <span style='border-bottom: 2px solid gray; font-size: calc(0.7vw + 0.9em); font-weight: bold;'>Active Now</span>
 
             <div class='row'>
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
+                </div>
+                
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
                 </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
                 </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
                 </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
                 </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
                 </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
+
+                    <p>Bin Emmanuel</p>
                 </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
-                </div>
+                <div class=' text-center'>
+                    <div class='users'>
+                        <i class='fa fa-user'></i>
+                    </div>
 
-                <div class='users text-center'>
-                    <i class='fa fa-user'></i>
+                    <p>Bin Emmanuel</p>
                 </div>
             </div>
         </div>
@@ -65,7 +97,14 @@ require 'header.php';
     <!-- .col-lg-12 .col-sm-12 .col-12 ends -->
 
     <div class='messages'>
+        
+    </div>
 
+    <div class='container'>
+        <form>
+            <textarea></textarea>
+            <button type='submit'> <i class="fa fa-paper-plane"></i></button>
+        </form>
     </div>
 
     <div class='friend-list'>

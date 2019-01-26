@@ -104,10 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				########################################
 					// Keep Recored of the Transfer,
 				########################################
+				
 				$userId = 61; // Temp
+
 				if (keepRecord($userId, $accName, $accNum, $amtToTransfer, $recBank, $recAccName, $recAccNum) == false) {
 					// Store an error message.
-					$error_message = "Sorry, something went wrong when trying to make the transfer of ₦". number_format($amtToTransfer) ." to ". $recAccName;
+					$error_message = "Sorry, something went wrong when trying to keep record of the transfer of ₦" . number_format($amtToTransfer) . " to " . $recAccName;
 				} else {
 					// Store a success message.
 					$message = "
@@ -117,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						<br/>
 						<div class='row'>
 							<div class='col-md-6'>
-
 								<p>
 									From: <br/>
 									Acct Name: <strong>". $accName ."</strong> <br/>
@@ -131,7 +132,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 									Acct Name: <strong>". $recAccName ."</strong><br/>
 									Acct NO: <strong>". $recAccNum ."</strong>
 								</p>
-
 							</div>
 						</div>
 						

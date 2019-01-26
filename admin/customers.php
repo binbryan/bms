@@ -31,7 +31,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 }
 
 // Number of records to fetch per page.
-$numberOfRecordsPerPage = 5 ;
+$numberOfRecordsPerPage = 5;
 
 // Offset.
 $offset = ($page - 1) * $numberOfRecordsPerPage;
@@ -131,7 +131,11 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 			</table>
 			<!-- .table ends -->
 
-			<?php include 'pagination.php'; ?>
+			<?php
+			$pageNo = $page;
+			// Include pagination.
+			include 'pagination.php'; 
+			?>
 			
 		</div>
 		<!-- table-responsive ends -->

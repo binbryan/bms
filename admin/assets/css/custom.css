@@ -458,7 +458,7 @@ form{
 .users:after{
 	content: "";
 	position: absolute;
-	top: calc(2.5vw + 1.5em);
+	top: calc(1.9vw + 1.1em);
 	background: #27da27;
 	border: 2px solid #fff;
 	border-radius: 100%;

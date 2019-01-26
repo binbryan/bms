@@ -108,23 +108,22 @@ class Transaction{
 			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
 		}
 
-		// Prepare statement.
-		/*$sql = $conn->prepare("INSERT INTO bank_transaction(userId, accName, accNum, recBank, recAccName, recAccNum, amtToTransfer, transactionDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");*/
-
-		$sql = $conn->prepare("INSERT INTO bank_transaction(userId, accName, accNum, amount, recBank, recAccName, recAccNum, transactionDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+		// Prepare a statement.
+		$sql = $conn->prepare("INSERT INTO bank_transaction(id, accName, accNum, amount, recBank, recAccName, recAccNum) VALUES(?, ?, ?, ?, ?, ?, ?)");
 
 		// Bind parameters.
-		$result  = $sql->bind_param('isiissis', $this->userId, $this->accName, $this->accNum, $this->amtToTransfer, $this->recBank, $this->recAccName, $this->recAccNum, $this->transactionDate);
+		$sql->bind_param('isiissi', $this->userId, $this->accName, $this->accNum, $this->amtToTransfer, $this->recBank, $this->recAccName, $this->recAccNum);
 
 		// Execute query.
-		$result = $sql->execute();
-
 		// Check if query was successful.
-		if ($result == true) {
+		if ($sql->execute() == true) {
 			return true;
 		}
 
+		// Close Statement.
 		$sql->close();
+
+		// Close connection.
 		$conn->close();
 
 		return false;
@@ -147,7 +146,6 @@ class Transaction{
 		if ($conn->connect_error) {
 			die("<span style='border-left: 5px solid #f00;'><strong>Error</strong>: Couldn't establish a connection." . $conn->error ."</span>" );
 		}
-
 
 		$sql = $conn->prepare("UPDATE bank_customers SET acctBal = ? WHERE acctNum = ?");
 
