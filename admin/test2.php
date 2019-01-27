@@ -17,7 +17,25 @@ $months = ['Jen', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
 $pageTitle = 'Chart';
 
 // Include our header.php file
-require 'header.php';
+//require 'header.php';
+
+$sql = "SELECT transactionDate FROM bank_transaction ORDER BY transactionID DESC";
+
+$result = $conn->query($sql);
+
+if ($result == true) {
+	if ($result->num_rows > 0) {
+		while ($row = $result->fetch_assoc()) {
+			$split = explode('-', $row['transactionDate']);
+			/* $transactionDate = $split[0] ."-". $split[1];
+
+			echo "<br>";
+			echo $transactionDate; */
+			
+		}
+	}
+}
+
 ?>
 
 <div class="container">

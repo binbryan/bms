@@ -21,6 +21,8 @@ require 'header.php';
 		<h5>Reports</h5>
 	</div>
 
+	<?php include 'test2.php'; ?>
+
 	<div class="report-section col-md-12 mb-4">
 		
 		<!-- Side Bar -->
@@ -93,15 +95,16 @@ require 'header.php';
 				</div>
 			</div>
 		</div>
-		<!-- Side Bar -->
+		<!-- Side Bar Ends -->
 
-		<!-- <div class="col-lg-9 col-12">
+		<!-- <div class="col-lg-12 col-12">
             <div class="resorce-wrap">
                 <div id="chartContainer">
-                	Graph goes here
                 </div>
             </div>
         </div> -->
+
+		
 
 
 		<!-- Transaction Row -->

@@ -3,25 +3,19 @@
 require 'conn.php';
 
 // Store the Table Name.
-$tableName = "bank_transaction";
+$tableName = "bank_chat";
 
 // sql to create table
 $sql = "CREATE TABLE $tableName (
-	transactionId INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+	chatId INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
 
-	id INTEGER NOT NULL,
+	id INTEGER NOT NULL, # The user's ID.
 
-	accName VARCHAR(25) NOT NULL,
+	recMessage VARCHAR(150) NOT NULL,  # The Reciever's Message.
 
-	accNum int(10) NOT NULL,
+	senMessage VARCHAR(150) NOT NULL, # The Sender's Message.
 
-	recBank VARCHAR(25) NOT NULL,
-
-	recAccName VARCHAR(25) NOT NULL,
-
-	recAccNum int(10) NOT NULL,
-
-	transactionDate TIMESTAMP NOT NULL DEFAULT  CURRENT_TIMESTAMP
+	chatDate TIMESTAMP NOT NULL DEFAULT  CURRENT_TIMESTAMP # The Current time stamp.
 	)
 
 	ENGINE = MyISAM DEFAULT CHARACTER SET latin1     
@@ -41,7 +35,6 @@ if ($sql->execute() == flase) {
 	echo "<strong>" . $tableName . "</strong> table created successfully";
 } */
 
-
 if ($conn->query($sql) === TRUE) {
 	// Print an error message if connection wasn't successful.
 	echo "<strong>". $tableName ."</strong> table created successfully" ;
@@ -55,4 +48,3 @@ $sql->close(); */
 
 // Close connection.
 $conn->close();
-?>

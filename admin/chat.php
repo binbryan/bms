@@ -24,7 +24,9 @@ require 'header.php';
     <div class='col-lg-12 col-sm-12 col-12'>
         <!-- .active-users -->
         <div class='active-users col-md-12'>
-            <span style='border-bottom: 2px solid gray; font-size: calc(0.7vw + 0.9em); font-weight: bold;'>Active Now</span>
+            <span style='font-size: calc(0.7vw + 0.9em); font-weight: bold;'>Active Now</span>
+            
+            <hr>
 
             <div class='row'>
                 <div class=' text-center'>
@@ -40,7 +42,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>John Doe</p>
                 </div>
 
                 <div class=' text-center'>
@@ -48,7 +50,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>Jane Doe</p>
                 </div>
 
                 <div class=' text-center'>
@@ -56,7 +58,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>Sammy</p>
                 </div>
 
                 <div class=' text-center'>
@@ -64,7 +66,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>Drake</p>
                 </div>
 
                 <div class=' text-center'>
@@ -72,7 +74,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>Francis Drake</p>
                 </div>
 
                 <div class=' text-center'>
@@ -80,7 +82,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>Boob</p>
                 </div>
 
                 <div class=' text-center'>
@@ -88,7 +90,7 @@ require 'header.php';
                         <i class='fa fa-user'></i>
                     </div>
 
-                    <p>Bin Emmanuel</p>
+                    <p>Jack</p>
                 </div>
             </div>
         </div>
@@ -96,8 +98,24 @@ require 'header.php';
     </div>
     <!-- .col-lg-12 .col-sm-12 .col-12 ends -->
 
-    <div class='messages'>
-        
+    <div class='messages col-md-12'>
+        <div class='row'>
+            <div class='col-md-1.5 text-center'>
+                <div class='users'>
+                    <i class='fa fa-user'></i>
+                </div>
+
+                <p>Jack</p>
+            </div>
+
+             <div class='col-md-10.5'>
+                <div class='message'>
+                    <p>
+                        Hey, wassup.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class='container'>
