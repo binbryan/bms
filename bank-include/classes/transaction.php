@@ -119,7 +119,6 @@ class Transaction{
 		if ($sql->execute() == true) {
 			return true;
 		}
-
 		// Close Statement.
 		$sql->close();
 

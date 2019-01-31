@@ -266,6 +266,8 @@ class Customer{
 
 		$sql = "SELECT * FROM bank_customers ORDER BY $order $ascend LIMIT $offset, $numRows";
 
+		var_dump($sql);
+
 		$result = $conn->query($sql);
 
 		// Initialize an empty array.

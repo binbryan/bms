@@ -20,7 +20,7 @@ require 'header.php';
 	<div class="text-center col-md-12 mb-4 heading">
 		<h5>Reports</h5>
 	</div>
-
+	
 	<?php include 'test2.php'; ?>
 
 	<div class="report-section col-md-12 mb-4">
@@ -131,8 +131,6 @@ require 'header.php';
 						<button class='btn btn-cus float-left' id='prev'> Prev </button>
 
 						<button class='btn btn-cus float-right' id='next'> Next </button>
-
-
 					</div>
 				</div>
 

@@ -75,6 +75,9 @@ require_once '..\bank-include\functions.php';
         
         <!-- custom jquery-->
         <script src="assets/js/custom.js"></script>
+        
+        <!-- load-reports script-->        
+        <script src="assets/js/load-reports.js"></script>
 
     </head>
     <body>
