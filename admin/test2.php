@@ -38,71 +38,68 @@ if ($result == true) {
 
 ?>
 
-<div class="container">
+<div class="row" style="padding: 20px; width: 80%; margin: 0 auto;">
+	<div class="chart col-md-12" style="padding: 0 0 20px 0">
+		<div class="row">
+			<div class="col-md-12 table-responsive">
+				<h1>Visits</h1>
 
-	<div class="row" style="padding: 20px; width: 80%; margin: 0 auto;">
-		<div class="chart col-md-12" style="padding: 0 0 20px 0">
-			<div class="row">
-				<div class="col-md-12 table-responsive">
-					<h1>Visits</h1>
+				<div class="col-md-12" style="border-left-width: 20px; border-left-color: brown;">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<span style="margin-right: 50px;">1996 - 2000</span>
+								</td>
+								<td style="width: 100%;">
+									<div class="" style="width: <?php echo $Bin; ?>; height: 30px; background: lightgreen; margin-top: 10px;"></div>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									<span style="margin-right: 50px;">2001 - 2004</span>
+								</td>
+								<td style="width: 100%;">
+									<div class="" style="width: <?php echo $Emmanuel; ?>; height: 30px; background: lightgreen; margin-top: 10px;"></div>
+								</td>
+							</tr>
 
-					<div class="col-md-12" style="border-left-width: 20px; border-left-color: brown;">
-						<table>
-							<tbody>
-								<tr>
-									<td>
-										<span style="margin-right: 50px;">1996 - 2000</span>
-									</td>
-									<td style="width: 100%;">
-										<div class="" style="width: <?php echo $Bin; ?>; height: 30px; background: lightgreen; margin-top: 10px;"></div>
-									</td>
-								</tr>
-								
-								<tr>
-									<td>
-										<span style="margin-right: 50px;">2001 - 2004</span>
-									</td>
-									<td style="width: 100%;">
-										<div class="" style="width: <?php echo $Emmanuel; ?>; height: 30px; background: lightgreen; margin-top: 10px;"></div>
-									</td>
-								</tr>
+							<tr style="margin-top: 20px;">
+								<td>
+									<span style="margin-right: 50px;">2005 - 2009</span>
+								</td>
+								<td style="width: 100%;">
+									<div class="" style="width: <?php echo $John; ?>; height: 30px; background: lightgreen; margin-top: 10px;"></div>
+								</td>
+							</tr>
 
-								<tr style="margin-top: 20px;">
-									<td>
-										<span style="margin-right: 50px;">2005 - 2009</span>
-									</td>
-									<td style="width: 100%;">
-										<div class="" style="width: <?php echo $John; ?>; height: 30px; background: lightgreen; margin-top: 10px;"></div>
-									</td>
-								</tr>
+							<tr>
+								<td><span style="margin-right: 50px;"></span></td>
+								<td>
+									<?php
+									$i = 0;
+									while ($i < 10) {
+										$i += 1;
 
-								<tr>
-									<td><span style="margin-right: 50px;"></span></td>
-									<td>
-										<?php
-										$i = 0;
-										while ($i < 10) {
-											$i += 1;
+										$perc = $i * 10;
 
-											$perc = $i * 10;
-
-											if ($perc == 101) {
-												$marginRight = "margin:". 0 ."px";
-											} else {
-												$marginRight = "margin:". 18 ."px";
-											}
-
-
-											echo "<span style='". $marginRight ."'>". $perc ."%</span>";
+										if ($perc == 101) {
+											$marginRight = "margin:". 0 ."px";
+										} else {
+											$marginRight = "margin:". 18 ."px";
 										}
-										
-										?>
 
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+
+										echo "<span style='". $marginRight ."'>". $perc ."%</span>";
+									}
+									
+									?>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

@@ -31,7 +31,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
 }
 
 // Number of records to fetch per page.
-$numberOfRecordsPerPage = 1;
+$numberOfRecordsPerPage = 5;
 
 // Offset.
 $offset = ($page - 1) * $numberOfRecordsPerPage;

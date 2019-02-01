@@ -281,7 +281,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'editPho
 /**
  * Process form data from .edit-modal
  */
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-address']) && $_POST['edit-address'] == 'Submit') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-phoneNumber']) && $_POST['edit-phoneNumber'] == 'Submit') {
 	/**
 	 * Validate and Sanitize Phone Number.
 	 */
@@ -363,14 +363,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit-address']) && $_
 		}
 	}
 
-	// Check if we have an email error.
+	/* // Check if we have an phoneNo error.
 	if (!isset($phoneNo_err)) {
 		$phoneNo_err = '';
-	}
+	} */
 } // End $_SERVER['REQUEST_METHOD'] === "POST".
 
 /**
- * Update Email.
+ * Update Phone Number.
  */
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit-phoneNumber']) && isset($_POST['phoneNo']) && $_POST['edit-phoneNumber'] === 'Submit') {
 	// Initialize null variables.
@@ -500,7 +500,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit-address']) && is
 
 	// Collect data to be uploaded.
 	$address = htmlspecialchars(stripcslashes(trim($_POST['address'])));
-	 echo $address;
 
 	#############################################################################
 		// Update email.
@@ -508,7 +507,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['edit-address']) && is
 			<script type="text/javascript">
 				$('document').ready(function () {
 					// Success Message.
-					alert('Your phone number was updated successfully');
+					alert('Your address was updated successfully');
 				});
 			</script>
 		<?php }

@@ -345,22 +345,28 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			if (checkFileType($fileName) != true) {
 				// Store an error message.
 				$profilePic_err = "Invalid Image File";
+				$error = 1;
 			} else {
 				// Where is store the file.
 				$target_file = $target_dir . basename($fileName);
+				$error = 0;
 
 				// Return an error if the file exists.
 				if (file_exists($target_file)) {
 					// Store an error message.
 					$profilePic_err = "Sorry, the profile picture already exists";
-				} else {
-					// Store the URL
-					$param_passport = SITE_URL .'/admin/'. $target_file;
-					
+					$error = 1;
+				} else {					
 					// Upload the file.
 					if (uploadPic($tmpFileName, $target_file) != true) {
 						// Store an error message.
 						$profilePic_err = "Sorry, something went wrong when trying to upload the profile picture";
+						$error = 1;
+
+					} else {
+						// Store the URL
+						$param_passport = SITE_URL . '/admin/' . $target_file;
+						$error = 0;
 					}
 				}
 				

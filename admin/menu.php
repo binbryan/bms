@@ -16,14 +16,14 @@
                 </div>
             </a>
         </div>
-
+<!-- 
         <div class="dropdown">
             <a href="payment-details.php">
                 <div class="dropdown-label">
                     <i class="fa fa-credit-card "></i>&nbsp; Cards
                 </div>
             </a>
-        </div>
+        </div> -->
 
         <div class="dropdown">
             <a href="transfer.php">

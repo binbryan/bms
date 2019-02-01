@@ -1002,6 +1002,16 @@ function checkFileType(string $fileName): bool{
 	return false;
 }
 
+function uploadPic(string $tmpFileName, string $target_file): bool{
+	// Upload the file.
+	// Upload file if there are no errors
+	if (move_uploaded_file($tmpFileName, $target_file)) {
+		return true;
+	}
+
+	return false;
+}
+
 /*
  * The Search function.
  * 
