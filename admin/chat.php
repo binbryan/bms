@@ -30,7 +30,7 @@ require 'header.php';
 
             <div class='row'>
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -38,7 +38,7 @@ require 'header.php';
                 </div>
                 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -46,7 +46,7 @@ require 'header.php';
                 </div>
 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -54,7 +54,7 @@ require 'header.php';
                 </div>
 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -62,7 +62,7 @@ require 'header.php';
                 </div>
 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -70,7 +70,7 @@ require 'header.php';
                 </div>
 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -78,7 +78,7 @@ require 'header.php';
                 </div>
 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -86,7 +86,7 @@ require 'header.php';
                 </div>
 
                 <div class=' text-center'>
-                    <div class='users'>
+                    <div class='users active-user'>
                         <i class='fa fa-user'></i>
                     </div>
 
@@ -98,9 +98,16 @@ require 'header.php';
     </div>
     <!-- .col-lg-12 .col-sm-12 .col-12 ends -->
 
-    <div class='messages col-md-12'>
+    
+    <div class='chats'>
         <div class='row'>
-            <div class='col-md-1.5 text-center'>
+            
+        </div>
+    </div>
+
+    <div class='chats col-md-12'>
+         <div class='row'>
+            <div class='meter-user text-center'>
                 <div class='users'>
                     <i class='fa fa-user'></i>
                 </div>
@@ -108,22 +115,42 @@ require 'header.php';
                 <p>Jack</p>
             </div>
 
-             <div class='col-md-10.5'>
-                <div class='message'>
-                    <p>
-                        Hey, wassup.
-                    </p>
-                </div>
+            <div class="message">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                </p>
             </div>
         </div>
+
+        <hr>
+
+         <div class='row'>
+            <div class='meter-user text-center'>
+                <div class='users active-user'>
+                    <i class='fa fa-user'></i>
+                </div>
+
+                <p>Sammy</p>
+            </div>
+
+            <div class="message ">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum qsadasd sadga asdgsdgasdgsdg asasgsadasdgfa
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
     </div>
 
-    <div class='container'>
+    <!-- <div class='container'>
         <form>
             <textarea></textarea>
             <button type='submit'> <i class="fa fa-paper-plane"></i></button>
         </form>
-    </div>
+    </div> -->
+
 
     <div class='friend-list'>
 

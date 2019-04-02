@@ -464,7 +464,12 @@ function getCustomerById($id = null){
 	##################
 	#	Basic Info   #
 	##################
-	echo "
+	?>
+	
+	<div class='text-center'>
+	<img src="<?php echo $customer[0]->passport ?>" alt="<?php echo $customer[0]->firstname . ' ' . $customer[0]->middlename . ' ' . $customer[0]->lastname ?>" style="width: 30%; height: 290px; border-radius: 100%; margin-bottom: 20px; box-shadow: 0px 2px 10px rgba(81, 74, 74);">
+	</div>
+
 	<table class='table table-striped table-sm'>
 		<thead>
 			<tr>
@@ -475,23 +480,23 @@ function getCustomerById($id = null){
 		<tbody>
 			<tr'>
 				<td><strong>Name:</strong></td>
-				<td>". $customer[0]->firstname .' '. $customer[0]->middlename .' '. $customer[0]->lastname ."</td>
+				<td><?php echo $customer[0]->firstname .' '. $customer[0]->middlename .' '. $customer[0]->lastname ?></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<td><strong>Gender:</strong></td>
-				<td>". $customer[0]->gender ."</td>
+				<td><?php echo $customer[0]->gender ?></td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<td><strong>Date Of Birth:</strong></td>
-				<td>". getDateFormated( $customer[0]->dateOfBirth ) ."</td>
+				<td><?php echo getDateFormated( $customer[0]->dateOfBirth ) ?></td>
 				<td></td>
 			</tr>
 		</tbody>
-	";
+	<?php
 
 	####################
 	#	Contact Info   #

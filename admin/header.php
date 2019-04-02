@@ -46,6 +46,8 @@ require_once '..\bank-include\functions.php';
         <!-- all css here -->
         <!-- custom css -->
         <link rel="stylesheet" href="assets/css/custom.css">
+        <!-- chat css -->
+        <link rel="stylesheet" href="assets/css/chat.css">
         <!-- bootstrap v3.3.7 css -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <!-- bootstrap v3.3.7 js -->

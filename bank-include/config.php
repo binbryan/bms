@@ -11,7 +11,7 @@ ini_set('error_log', 'log/phpError.txt');
 date_default_timezone_set('Africa/Lagos'); //http://www.php.net/manual/en/timezones.php
 
 //Store credentials in variables
-$servername = 'localhost';
+$servername = '';
 $siteurl = 'http://localhost/bank';
 $username = 'binemmanuel';
 $password = 'FASTlogin89';

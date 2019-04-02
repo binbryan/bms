@@ -82,7 +82,7 @@ if (isset($_GET['delete']) && $_GET['delete'] === "yes") {
 
 	<div class="table-responsive">
 		<div class='text-center'>
-			<img src='<?php echo $user[0]['profilePic']; ?>' alt="<?php echo $user[0]['fullname'] ."'s profile picture"; ?>" style='width: 30%; height: 290px; border-radius: 100%; margin-bottom: 20px;'/>
+			<img src='<?php echo $user[0]['profilePic']; ?>' alt="<?php echo $user[0]['fullname'] ."'s profile picture"; ?>" style='width: 30%; height: 290px; border-radius: 100%; margin-bottom: 20px; box-shadow: 0px 2px 10px rgba(81, 74, 74);'/>
 		<div>
 
 		<table class="table table-striped table-sm">
