@@ -54,30 +54,24 @@ require_once '..\bank-include\functions.php';
         <link rel="stylesheet" href="assets/js/bootstrap.min.js">
         <!-- animate css -->
         <!-- <link rel="stylesheet" href="assets/css/animate.css"> -->
-        
         <!-- owl.carousel.2.0.0-beta.2.4 css -->
         <!-- <link rel="stylesheet" href="assets/css/owl.carousel.min.css"> -->
-        
         <!-- Top Slider CSS -->
         <!-- <link href="css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all"> -->
-
         <!-- font-awesome v4.6.3 css -->
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-        
         <!-- flaticon.css -->
         <!-- <link rel="stylesheet" href="assets/css/flaticon.css"> -->
-        
         <!-- style css -->
         <link rel="stylesheet" href="assets/css/styles.css">
         <!-- responsive css -->
         <!-- <link rel="stylesheet" href="assets/css/responsive.css"> -->
-        
         <!-- jquery.min -->
         <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-        
         <!-- custom jquery-->
         <script src="assets/js/custom.js"></script>
-        
+        <!-- message js-->
+        <script src="assets/js/message.js"></script>
         <!-- load-reports script-->        
         <script src="assets/js/load-reports.js"></script>
 

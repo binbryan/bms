@@ -20,9 +20,7 @@
 		###########################################
 
 		// Increment Page Number.
-		$page++;
-
-		?>
+		$page++; ?>
 		
 		<!-- Next Button -->
 		<li class='page-item <?php echo $class; ?>'>

@@ -1,5 +1,5 @@
 .chats{
-    margin-top: 30px;
+    margin: 30px 0 0 0;
 }
 
 .active-users{
@@ -17,30 +17,53 @@
 	color: #A9A7A5;
 	font-size: calc(2.2vw + 2.2em);
 	padding: 5px 15px;
-    margin: 5px 22px;
+    margin: 22px 22px;
     border: 1px solid #C8C6C4;    
 	border-radius: 100%;
 }
 
-/* .users:after{
-	content: "";
-	position: absolute;
-	top: calc(1.9vw + 1.6em);
-	background: #27da27;
-	border: 2px solid #fff;
-	border-radius: 100%;
-	width: 20px;
-	height: 20px;
-	z-index: 1;
-} */
-
-/* .message{
-    background: gold;
-} */
+.me .message p{
+    background: rgb(231, 193, 155);
+    box-shadow: 0px 2px 10px rgb(231, 193, 155);
+}
 
 .message p{
     background: #e7e3e3;
-    margin: 22px 0;
-    padding: 11px  14px;
+    color: #59513d;
+    margin: 22px 0 0 0;
+    padding: 11px 14px;
     border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px #e7e3e3;
+}
+
+.message-box{
+    margin: 50px 0 0 0;
+}
+
+.message-box button{
+    background: transparent;
+    color: #B7ABA6;
+    font-size: calc(1vw + 1.22em);
+    border: none;
+}
+
+.message-box button:hover{
+    color: #AED21C;
+    font-size: calc(1vw + 2.22em);
+}
+
+.message-textarea{
+    font-size: calc(1vw + 0.5em);
+    height: 50px;
+    padding: 12px 0 0 0;
+    border: 2px solid #B7ABA6;
+    border-radius: 5px;
+    color: #7A6E69;
+}
+
+.message-textarea:hover,
+.message-textarea:focus{
+    border: 2px solid rgb(231, 193, 155);
+    box-shadow: 0px 2px 10px rgb(231, 193, 155);
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The chat template file.
  *
@@ -97,14 +96,7 @@ require 'header.php';
         <!-- .active-users ends -->
     </div>
     <!-- .col-lg-12 .col-sm-12 .col-12 ends -->
-
     
-    <div class='chats'>
-        <div class='row'>
-            
-        </div>
-    </div>
-
     <div class='chats col-md-12'>
          <div class='row'>
             <div class='meter-user text-center'>
@@ -116,9 +108,11 @@ require 'header.php';
             </div>
 
             <div class="message">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
+                <a href="message.php">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    </p>
+                </a>
             </div>
         </div>
 
@@ -133,7 +127,7 @@ require 'header.php';
                 <p>Sammy</p>
             </div>
 
-            <div class="message ">
+            <div class="message">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum qsadasd sadga asdgsdgasdgsdg asasgsadasdgfa
                 </p>
@@ -150,7 +144,6 @@ require 'header.php';
             <button type='submit'> <i class="fa fa-paper-plane"></i></button>
         </form>
     </div> -->
-
 
     <div class='friend-list'>
 

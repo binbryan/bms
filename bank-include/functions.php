@@ -11,6 +11,9 @@ require_once 'classes/transaction.php';
 // Include our Search class.
 require_once 'classes/search.php';
 
+// Include our Search class.
+require_once 'classes/message.php';
+
 /*
  * The function that inserts a Post into the database.
  *
@@ -467,7 +470,7 @@ function getCustomerById($id = null){
 	?>
 	
 	<div class='text-center'>
-	<img src="<?php echo $customer[0]->passport ?>" alt="<?php echo $customer[0]->firstname . ' ' . $customer[0]->middlename . ' ' . $customer[0]->lastname ?>" style="width: 30%; height: 290px; border-radius: 100%; margin-bottom: 20px; box-shadow: 0px 2px 10px rgba(81, 74, 74);">
+	<img src="<?php echo $customer[0]->passport ?>" alt="<?php echo $customer[0]->firstname . ' ' . $customer[0]->middlename . ' ' . $customer[0]->lastname ?>'s Passport" style="<?php if (isset($customer[0]->passport)) { ?> width: 30%; height: 290px; border-radius: 100%; margin-bottom: 20px; box-shadow: 0px 2px 10px rgba(81, 74, 74); <?php } ?>">
 	</div>
 
 	<table class='table table-striped table-sm'>
@@ -632,10 +635,9 @@ function getCustomerById($id = null){
  * This function displays Page Count for pagination.
  */
 function displayPageNum(int $page, int $totalPages){
-	for ($page = 1; $page <= $totalPages; $page++) { 
-		echo "<li class='page-item'><a class='page-link' href='"."?page=". $page ."'>". $page ."</a></li>";
-
-	}
+	for ($page = 1; $page <= $totalPages; $page++) { ?>
+		<li class='page-item'><a class='page-link' href='<?php echo '?page='. $page; ?>'><?php echo $page; ?></a></li>
+	<?php }
 }
 
 /*

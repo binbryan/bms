@@ -329,7 +329,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 			// Store an error message.
 			$profilePic_err = "Please select a profile picture";
 		} else {
-			// Process the uploaded file.
+			/**
+			 * Process the uploaded file.
+			 */
+
 			// Target directory.
 			$target_dir = "uploads/image/";
 
